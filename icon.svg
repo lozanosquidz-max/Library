@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#111111"/>
+  <rect x="40" y="40" width="432" height="432" fill="#fbfaf7"/>
+  <rect x="64" y="64" width="384" height="384" fill="#111111"/>
+  <text x="256" y="216" text-anchor="middle" font-family="Times New Roman, serif" font-size="92" fill="#fbfaf7" letter-spacing="0">AR</text>
+  <line x1="120" y1="256" x2="392" y2="256" stroke="#a7081c" stroke-width="12"/>
+  <text x="256" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#fbfaf7" letter-spacing="8">ARCHIVE</text>
+</svg>

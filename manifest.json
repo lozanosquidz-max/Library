@@ -1,0 +1,19 @@
+{
+  "name": "Archive - Personal Library Magazine",
+  "short_name": "Archive",
+  "description": "A Vogue-inspired personal library app for books, wishlist, reviews, collections, and reading progress.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbfaf7",
+  "theme_color": "#111111",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
