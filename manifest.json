@@ -1,7 +1,7 @@
 {
   "name": "Archive - Personal Library Magazine",
   "short_name": "Archive",
-  "description": "A Vogue-inspired personal library app for books, wishlist, reviews, collections, and reading progress.",
+  "description": "An editorial magazine-inspired personal library app for books, wishlist, reviews, collections, and reading progress.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

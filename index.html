@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-title" content="Archive">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="icon.svg">
-    <title>Archive - Personal Library Magazine</title>
+    <title>Archive - Personal Library</title>
     <style>
         @font-face {
             font-family: "Archive Bodoni";
@@ -37,16 +37,16 @@
         :root {
             --paper: #fbfaf7;
             --ink: #111111;
-            --soft: #46413b;
+            --soft: #4a443d;
             --muted: #837b70;
             --line: #d8d0c4;
             --panel: #ffffff;
             --accent: #a7081c;
             --accent-soft: #f4dde1;
             --gold: #b99658;
-            --shadow: rgba(17, 17, 17, 0.14);
-            --font-display: "Archive Bodoni", "Bodoni 72", "Bodoni MT", "Didot", "Georgia", serif;
-            --font-serif-thai: "Archive Serif Thai", "Noto Serif Thai", "Georgia", serif;
+            --shadow: rgba(17, 17, 17, 0.12);
+            --font-display: "Archive Bodoni", "Bodoni 72", "Bodoni MT", "Didot", Georgia, serif;
+            --font-serif: "Archive Serif Thai", "Noto Serif Thai", Georgia, serif;
             --font-sans: "Archive Sans Thai", "Noto Sans Thai", Arial, sans-serif;
         }
 
@@ -55,11 +55,10 @@
             --ink: #f8f4ec;
             --soft: #d8d0c4;
             --muted: #a9a094;
-            --line: #3b352f;
+            --line: #3a342e;
             --panel: #191919;
             --accent: #ec4b63;
-            --accent-soft: #36171d;
-            --gold: #d9bd7b;
+            --accent-soft: #35161d;
             --shadow: rgba(0, 0, 0, 0.42);
         }
 
@@ -83,19 +82,19 @@
 
         .masthead {
             border-bottom: 1px solid var(--ink);
-            padding: 26px 0 18px;
+            padding: 24px 0 18px;
         }
 
         .top-strip {
             display: flex;
             justify-content: space-between;
-            gap: 12px;
+            gap: 16px;
             align-items: center;
             padding: 9px 0;
             border-top: 4px solid var(--ink);
             border-bottom: 1px solid var(--line);
             color: var(--soft);
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             font-weight: 900;
             letter-spacing: 0.1em;
             text-transform: uppercase;
@@ -103,7 +102,7 @@
 
         .brand-row {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(280px, 390px);
+            grid-template-columns: minmax(0, 1fr) minmax(270px, 390px);
             gap: 34px;
             align-items: end;
             padding-top: 18px;
@@ -112,32 +111,23 @@
         .brand {
             margin: 0;
             font-family: var(--font-display);
-            font-size: clamp(4.2rem, 12vw, 9.8rem);
+            font-size: clamp(4rem, 12vw, 9.7rem);
             font-weight: 500;
             line-height: 0.82;
             letter-spacing: -0.055em;
             text-transform: uppercase;
-            font-variation-settings: "opsz" 96;
             transform: scaleX(0.94);
             transform-origin: left bottom;
-            position: relative;
-            z-index: 1;
         }
 
-        .brand:hover { color: var(--accent); }
-
-        .brand-note {
-            text-align: right;
-            color: var(--soft);
-            padding-bottom: 7px;
+        .issue-panel {
             border-top: 1px solid var(--ink);
             border-bottom: 1px solid var(--line);
-            padding-top: 13px;
-            padding-bottom: 14px;
+            padding: 13px 0 14px;
+            text-align: right;
         }
 
         .issue-label {
-            margin-bottom: 8px;
             color: var(--accent);
             font-size: 0.68rem;
             font-weight: 900;
@@ -149,7 +139,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 8px;
-            margin-top: 0;
+            margin-top: 10px;
             padding-top: 10px;
             border-top: 1px solid var(--line);
         }
@@ -163,36 +153,47 @@
             text-transform: uppercase;
         }
 
-        .issue-metrics strong {
+        .issue-metrics strong,
+        .total-spent {
             display: block;
-            margin-top: 2px;
             color: var(--ink);
             font-family: var(--font-display);
-            font-size: 1.18rem;
             font-weight: 500;
             line-height: 1;
             letter-spacing: -0.03em;
         }
 
+        .issue-metrics strong {
+            margin-top: 3px;
+            font-size: 1.16rem;
+        }
+
         .total-spent {
-            margin-top: 14px;
-            color: var(--accent);
-            font-family: var(--font-display);
+            margin-top: 13px;
+            color: var(--ink);
             font-size: 2.7rem;
-            font-weight: 500;
-            line-height: 1;
-            letter-spacing: -0.03em;
+        }
+
+        .nav-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: center;
+            padding-top: 20px;
         }
 
         .nav-tabs {
             display: flex;
             flex-wrap: wrap;
             gap: 0;
-            padding-top: 22px;
             position: relative;
-            z-index: 10;
-            isolation: isolate;
-            clear: both;
+            z-index: 5;
+        }
+
+        .nav-tools {
+            display: flex;
+            gap: 8px;
+            align-items: center;
         }
 
         .btn {
@@ -200,15 +201,17 @@
             background: transparent;
             color: var(--ink);
             min-height: 39px;
-            padding: 9px 16px;
+            padding: 9px 15px;
             font-size: 0.7rem;
             font-weight: 900;
             letter-spacing: 0.11em;
             text-transform: uppercase;
             margin-right: -1px;
-            position: relative;
-            z-index: 11;
-            pointer-events: auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            text-decoration: none;
         }
 
         .btn.primary,
@@ -217,30 +220,36 @@
             color: var(--paper);
         }
 
+        .btn.subtle {
+            border-color: var(--line);
+        }
+
+        .btn.danger:hover,
         .btn:hover {
             background: var(--accent);
             border-color: var(--accent);
             color: white;
         }
 
-        .layout {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) 340px;
-            gap: 34px;
-            padding: 30px 0 52px;
+        .icon-btn {
+            width: 39px;
+            padding: 0;
+            font-size: 1rem;
         }
 
-        .sidebar {
-            border-left: 1px solid var(--line);
-            padding-left: 22px;
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 300px;
+            gap: 34px;
+            padding: 30px 0 54px;
         }
 
         .view-head {
-            display: flex;
-            justify-content: space-between;
-            gap: 16px;
-            align-items: end;
-            margin-bottom: 22px;
+            margin-bottom: 14px;
+        }
+
+        .view-head .title {
+            display: none;
         }
 
         .eyebrow {
@@ -255,244 +264,32 @@
         .title {
             margin: 0;
             font-family: var(--font-display);
-            font-size: clamp(2.2rem, 6vw, 5.2rem);
-            font-weight: 500;
-            line-height: 0.88;
-            letter-spacing: 0;
-        }
-
-        .subcopy {
-            max-width: 620px;
-            margin: 10px 0 0;
-            color: var(--soft);
-            line-height: 1.6;
-            font-family: var(--font-serif-thai);
-        }
-
-        .view-head .subcopy {
-            display: none;
-        }
-
-        .toolbar {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) 170px;
-            gap: 10px;
-            margin-bottom: 22px;
-        }
-
-        .field {
-            width: 100%;
-            min-height: 42px;
-            padding: 11px 12px;
-            border: 1px solid var(--ink);
-            background: var(--panel);
-        }
-
-        textarea.field {
-            min-height: 94px;
-            resize: vertical;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-            gap: 22px;
-            border-top: 1px solid var(--ink);
-            border-bottom: 1px solid var(--line);
-            padding: 18px 0 26px;
-            margin-bottom: 28px;
-        }
-
-        .feature-card {
-            display: grid;
-            grid-template-columns: minmax(160px, 260px) minmax(0, 1fr);
-            gap: 20px;
-            align-items: end;
-        }
-
-        .cover {
-            width: 100%;
-            aspect-ratio: 3 / 4;
-            object-fit: cover;
-            border: 1px solid var(--ink);
-            background: linear-gradient(135deg, var(--panel), var(--line));
-            box-shadow: 0 18px 34px var(--shadow);
-            display: block;
-        }
-
-        .cover.wide { aspect-ratio: 4 / 3; }
-        .cover.square { aspect-ratio: 1 / 1; }
-
-        .feature-title {
-            margin: 0;
-            font-family: var(--font-serif-thai);
-            font-size: clamp(2.2rem, 4.4vw, 4.4rem);
-            font-weight: 700;
-            line-height: 1.02;
-            letter-spacing: 0;
-            max-width: 9.5em;
-            overflow-wrap: normal;
-            word-break: keep-all;
-        }
-
-        .metric-title {
-            font-family: var(--font-display);
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 6vw, 5.2rem);
             font-weight: 500;
             line-height: 0.9;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.035em;
         }
 
-        .quick-stack {
-            display: grid;
-            gap: 12px;
-        }
-
-        .quick-card,
-        .panel {
-            border-top: 1px solid var(--ink);
-            background: transparent;
-            padding-top: 12px;
-        }
-
-        .quick-card h3,
-        .panel h3 {
-            margin: 0 0 8px;
-            font-size: 0.78rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .quick-card p,
-        .panel p {
-            margin: 0;
+        .helper {
+            margin: 10px 0 0;
             color: var(--soft);
-            line-height: 1.5;
-            font-family: var(--font-serif-thai);
+            font-family: var(--font-serif);
+            line-height: 1.6;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 28px 20px;
-        }
-
-        .shelf-grid {
-            grid-template-columns: repeat(5, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .card {
-            min-width: 0;
-            border-top: 1px solid var(--ink);
-            padding-top: 12px;
-        }
-
-        .card-main { cursor: pointer; }
-        .card-main:hover h3 { color: var(--accent); }
-
-        .kicker {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin: 10px 0 8px;
-        }
-
-        .pill {
-            display: inline-block;
-            border: 1px solid var(--ink);
-            padding: 4px 7px;
-            background: var(--panel);
-            font-size: 0.66rem;
-            font-weight: 900;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-        }
-
-        .pill.accent {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: white;
-        }
-
-        .card h3 {
-            margin: 0 0 7px;
-            font-family: var(--font-serif-thai);
-            font-size: 1.32rem;
-            font-weight: 700;
-            line-height: 1.18;
-            overflow-wrap: anywhere;
-        }
-
-        .shelf-grid .card h3 {
-            font-family: var(--font-serif-thai);
-            font-size: 0.96rem;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .meta {
-            margin: 0 0 6px;
-            color: var(--soft);
-            font-size: 0.9rem;
-            line-height: 1.45;
-            font-family: var(--font-serif-thai);
-        }
-
-        .price {
-            margin: 8px 0 0;
-            color: var(--accent);
-            font-weight: 900;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 9px;
-        }
-
-        .tag {
-            display: inline-block;
-            background: var(--accent-soft);
-            padding: 5px 8px;
-            font-size: 0.74rem;
-            font-weight: 800;
-        }
-
-        .progress-track {
-            height: 7px;
-            background: var(--line);
-            margin-top: 10px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--accent);
-            width: 0%;
-        }
-
-        .stars {
-            color: var(--gold);
-            letter-spacing: 0.04em;
-        }
-
-        .actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 13px;
+        .sidebar {
+            border-left: 1px solid var(--line);
+            padding-left: 22px;
         }
 
         .side-block {
             border-top: 1px solid var(--ink);
             padding-top: 12px;
-            margin-bottom: 26px;
+            margin-bottom: 24px;
         }
 
         .side-title {
-            margin: 0 0 13px;
+            margin: 0 0 12px;
             font-size: 0.76rem;
             font-weight: 900;
             letter-spacing: 0.11em;
@@ -509,13 +306,13 @@
             border: 1px solid var(--line);
             background: var(--panel);
             padding: 12px;
-            min-height: 82px;
+            min-height: 78px;
         }
 
         .stat span {
             display: block;
             color: var(--muted);
-            font-size: 0.68rem;
+            font-size: 0.67rem;
             font-weight: 900;
             letter-spacing: 0.07em;
             text-transform: uppercase;
@@ -525,130 +322,396 @@
             display: block;
             margin-top: 7px;
             font-family: var(--font-display);
-            font-size: 1.55rem;
+            font-size: 1.5rem;
             font-weight: 500;
             line-height: 1;
             overflow-wrap: anywhere;
         }
 
-        .filter-grid {
+        .toolbar,
+        .filters {
             display: grid;
-            gap: 9px;
+            gap: 10px;
         }
 
-        .data-actions {
+        .toolbar {
+            grid-template-columns: minmax(0, 1fr);
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .toolbar.with-action {
+            grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+        }
+
+        .filters {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin-bottom: 22px;
+        }
+
+        .field {
+            width: 100%;
+            min-height: 42px;
+            padding: 10px 12px;
+            border: 1px solid var(--ink);
+            background: var(--panel);
+            font-size: 0.92rem;
+        }
+
+        textarea.field {
+            min-height: 96px;
+            resize: vertical;
+        }
+
+        .view-toggle {
+            display: inline-flex;
+            gap: 0;
+            white-space: nowrap;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--line);
+            padding: 14px 0 22px;
+            margin-bottom: 24px;
+        }
+
+        .feature-card {
+            transition: opacity 0.22s ease;
+        }
+
+        .feature-card {
+            display: grid;
+            grid-template-columns: minmax(120px, 190px) minmax(0, 1fr);
+            gap: clamp(14px, 2.4vw, 26px);
+            align-items: center;
+            min-width: 0;
+        }
+
+        .feature-copy {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        .cover {
+            display: block;
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            object-fit: contain;
+            border: 1px solid var(--ink);
+            background: var(--panel);
+            background: color-mix(in srgb, var(--panel) 88%, var(--line));
+            box-shadow: 0 16px 30px var(--shadow);
+        }
+
+        .cover.wide { aspect-ratio: 3 / 4; }
+
+        .feature-title {
+            margin: 0;
+            max-width: 100%;
+            font-family: var(--font-sans);
+            font-size: clamp(1.25rem, 2.25vw, 2.35rem);
+            font-weight: 800;
+            line-height: 1.16;
+            overflow-wrap: anywhere;
+        }
+
+        .quick-stack {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .quick-card,
+        .panel {
+            border-top: 1px solid var(--ink);
+            padding-top: 12px;
+        }
+
+        .quick-card h3,
+        .panel h3 {
+            margin: 0 0 8px;
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .quick-card p,
+        .panel p,
+        .meta {
+            margin: 0;
+            color: var(--soft);
+            font-family: var(--font-serif);
+            line-height: 1.5;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+            gap: 20px 14px;
+        }
+
+        .grid.shelf {
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 18px 14px;
+        }
+
+        .book-card,
+        .collection-card {
+            border-top: 1px solid var(--ink);
+            padding-top: 12px;
+            min-width: 0;
+        }
+
+        .card-main {
+            cursor: pointer;
+        }
+
+        .card-main:hover h3 {
+            color: var(--accent);
+        }
+
+        .book-card h3,
+        .collection-card h3 {
+            margin: 10px 0 6px;
+            font-family: var(--font-sans);
+            font-size: 0.92rem;
+            font-weight: 800;
+            line-height: 1.28;
+            overflow-wrap: anywhere;
+        }
+
+        .grid.shelf .book-card h3 {
+            font-size: 0.9rem;
+            line-height: 1.24;
+        }
+
+        .list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .list-row {
+            display: grid;
+            grid-template-columns: 72px minmax(0, 1fr) auto;
+            gap: 14px;
+            align-items: center;
+            border-top: 1px solid var(--line);
+            padding-top: 12px;
+        }
+
+        .list-row .cover {
+            box-shadow: none;
+        }
+
+        .pill-row,
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .pill-row {
+            margin: 10px 0 8px;
+        }
+
+        .pill,
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            min-height: 23px;
+            padding: 4px 7px;
+            font-size: 0.66rem;
+            font-weight: 900;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .pill {
+            border: 1px solid var(--ink);
+            background: var(--panel);
+        }
+
+        .pill.accent {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: white;
+        }
+
+        .tag {
+            background: var(--accent-soft);
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        .progress-track {
+            height: 7px;
+            background: var(--line);
+            overflow: hidden;
+            margin-top: 9px;
+        }
+
+        .progress-fill {
+            width: 0;
+            height: 100%;
+            background: var(--accent);
+        }
+
+        .price {
+            margin: 8px 0 0;
+            color: var(--ink);
+            font-weight: 900;
+        }
+
+        .stars {
+            color: var(--gold);
+            letter-spacing: 0.04em;
+        }
+
+        .actions {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 9px;
-        }
-
-        .empty {
-            grid-column: 1 / -1;
-            border-top: 1px solid var(--ink);
-            padding: 30px 0;
-            color: var(--soft);
-            line-height: 1.6;
+            gap: 8px;
+            margin-top: 11px;
         }
 
         .detail {
             display: grid;
-            grid-template-columns: minmax(220px, 360px) minmax(0, 1fr);
+            grid-template-columns: minmax(220px, 350px) minmax(0, 1fr);
             gap: 30px;
             border-top: 1px solid var(--ink);
             padding-top: 18px;
         }
 
+        .detail.collection-detail {
+            grid-template-columns: minmax(130px, 230px) minmax(0, 1fr);
+            gap: 22px;
+        }
+
+        .detail > div {
+            min-width: 0;
+        }
+
         .detail-title {
             margin: 0;
-            font-family: var(--font-serif-thai);
-            font-size: clamp(2.6rem, 6vw, 5.5rem);
-            font-weight: 700;
-            line-height: 1.02;
-            letter-spacing: 0;
+            font-family: var(--font-sans);
+            font-size: clamp(1.35rem, 2.5vw, 2.7rem);
+            font-weight: 800;
+            line-height: 1.18;
+            overflow-wrap: anywhere;
+            word-break: normal;
+            hyphens: auto;
         }
 
-        .review-box {
-            margin-top: 18px;
-            padding: 16px;
-            border-left: 4px solid var(--accent);
+        .collection-detail .detail-title {
+            font-size: clamp(1.25rem, 2.2vw, 2.25rem);
+        }
+
+        .review-box,
+        .notice,
+        .empty-state {
             background: var(--panel);
+            border-left: 4px solid var(--accent);
+            padding: 15px;
             color: var(--soft);
+            font-family: var(--font-serif);
             line-height: 1.6;
-            font-family: var(--font-serif-thai);
         }
 
-        .modal {
+        .empty-state {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            grid-column: 1 / -1;
+        }
+
+        .modal,
+        .drawer-backdrop {
             display: none;
             position: fixed;
             inset: 0;
-            z-index: 20;
-            align-items: center;
-            justify-content: center;
+            z-index: 30;
             background: rgba(0, 0, 0, 0.58);
             padding: 18px;
         }
 
-        .modal-content {
-            width: min(760px, 96vw);
-            max-height: 92vh;
-            overflow: auto;
+        .modal {
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.open,
+        .drawer-backdrop.open {
+            display: flex;
+        }
+
+        .modal-content,
+        .drawer {
             background: var(--panel);
+            color: var(--ink);
             border: 1px solid var(--ink);
             box-shadow: 0 22px 70px rgba(0, 0, 0, 0.35);
-            padding: 26px;
         }
 
-        .modal-content h2 {
-            margin: 0 0 20px;
+        .modal-content {
+            width: min(820px, 96vw);
+            max-height: 92vh;
+            overflow: auto;
+            padding: 24px;
+        }
+
+        .drawer-backdrop {
+            justify-content: flex-end;
+            padding: 0;
+        }
+
+        .drawer {
+            width: min(420px, 100%);
+            height: 100%;
+            overflow: auto;
+            padding: 24px;
+        }
+
+        .modal-content h2,
+        .drawer h2 {
+            margin: 0 0 18px;
             font-family: var(--font-display);
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 500;
-            line-height: 0.92;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
         }
 
-        .form-layout {
+        .form-grid {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) 176px;
-            gap: 16px;
-        }
-
-        .inputs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 11px;
         }
 
         .full { grid-column: 1 / -1; }
 
-        .dropzone {
-            width: 176px;
-            aspect-ratio: 3 / 4;
-            border: 1px dashed var(--ink);
-            background: var(--paper);
-            display: grid;
-            place-items: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            font-size: 0.76rem;
-            font-weight: 900;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .dropzone img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .modal-footer {
+        .form-actions {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-top: 18px;
+        }
+
+        .settings-section {
+            border-top: 1px solid var(--ink);
+            padding-top: 14px;
+            margin-top: 18px;
+        }
+
+        .settings-section h3 {
+            margin: 0 0 10px;
+            font-size: 0.78rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         .sr-only {
@@ -663,40 +726,89 @@
             border: 0;
         }
 
-        @media (max-width: 1040px) {
-            .layout { grid-template-columns: 1fr; }
+        @media (max-width: 1050px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
             .sidebar {
                 border-left: 0;
                 border-top: 1px solid var(--ink);
                 padding-left: 0;
-                padding-top: 24px;
+                padding-top: 22px;
             }
-            .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .shelf-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            .grid.shelf {
+                grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+            }
         }
 
         @media (max-width: 760px) {
-            .container { width: min(100% - 24px, 1280px); }
+            .container {
+                width: min(100% - 24px, 1280px);
+            }
+
             .brand-row,
             .hero-grid,
             .feature-card,
+            .quick-stack,
             .toolbar,
+            .filters,
             .detail,
-            .form-layout,
-            .inputs,
-            .modal-footer {
+            .form-grid {
                 grid-template-columns: 1fr;
             }
-            .brand-note { text-align: left; }
-            .grid,
-            .shelf-grid,
+
+            .brand {
+                font-size: clamp(4rem, 24vw, 6.2rem);
+            }
+
+            .issue-panel {
+                text-align: left;
+            }
+
+            .nav-row {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .nav-tabs,
+            .nav-tools {
+                width: 100%;
+            }
+
+            .nav-tabs .btn {
+                flex: 1 1 50%;
+            }
+
             .stats-grid,
-            .data-actions,
-            .actions {
+            .form-actions {
                 grid-template-columns: 1fr;
             }
-            .dropzone { width: 100%; max-width: 240px; }
-            .modal-content h2 { font-size: 2.25rem; }
+
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .grid.shelf {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .actions {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .list-row {
+                grid-template-columns: 58px minmax(0, 1fr);
+            }
+
+            .list-row .actions {
+                grid-column: 1 / -1;
+            }
         }
     </style>
 </head>
@@ -704,30 +816,38 @@
     <header class="masthead">
         <div class="container">
             <div class="top-strip">
-                <span>Personal Library Magazine OS</span>
+                <span id="topLabel">Personal Library</span>
                 <span id="todayLabel">Archive</span>
             </div>
             <div class="brand-row">
-                <h1 class="brand" onclick="setView('home')">Archive</h1>
-                <div class="brand-note">
-                    <div class="issue-label">May Issue / Private Library</div>
+                <h1 class="brand" onclick="setView('home')">MY BOOK</h1>
+                <div class="issue-panel">
+                    <div class="issue-label" id="issueLabel">Private Library</div>
                     <div class="issue-metrics">
-                        <div><span>Series</span><strong id="issueSeries">0</strong></div>
-                        <div><span>Volumes</span><strong id="issueVolumes">0</strong></div>
-                        <div><span>Read</span><strong id="issueProgress">0%</strong></div>
+                        <div><span id="issueBooksLabel">Books</span><strong id="issueBooks">0</strong></div>
+                        <div><span id="issueUnreadLabel">Unread</span><strong id="issueUnread">0</strong></div>
+                        <div><span id="issueReadLabel">Read</span><strong id="issueProgress">0%</strong></div>
                     </div>
-                    <div class="total-spent" id="totalPrice">฿0</div>
+                    <div class="total-spent" id="totalSpent">฿0</div>
                 </div>
             </div>
-            <nav class="nav-tabs" aria-label="Archive views">
-                <button class="btn active" data-view="home" onclick="setView('home')">Magazine</button>
-                <button class="btn" data-view="archive" onclick="setView('archive')">Archive</button>
-                <button class="btn" data-view="shelf" onclick="setView('shelf')">Shelf</button>
-                <button class="btn" data-view="wishlist" onclick="setView('wishlist')">Wishlist</button>
-                <button class="btn" data-view="dashboard" onclick="setView('dashboard')">Dashboard</button>
-                <button class="btn" data-view="collections" onclick="setView('collections')">Collections</button>
-                <button class="btn" id="themeButton" onclick="toggleDarkMode()">Dark Mode</button>
-            </nav>
+            <div class="nav-row">
+                <nav class="nav-tabs" aria-label="Main navigation">
+                    <button class="btn active" data-view="home" onclick="setView('home')" id="navHome">Magazine</button>
+                    <button class="btn" data-view="library" onclick="setView('library')" id="navLibrary">Library</button>
+                    <button class="btn" data-view="wishlist" onclick="setView('wishlist')" id="navWishlist">Wishlist</button>
+                    <button class="btn" data-view="collections" onclick="setView('collections')" id="navCollections">Collections</button>
+                </nav>
+                <div class="nav-tools">
+                    <select class="field" id="languageSelect" onchange="setLanguage(this.value)" style="min-height:39px; width:auto;">
+                        <option value="th">TH</option>
+                        <option value="en">EN</option>
+                        <option value="es">ES</option>
+                    </select>
+                    <button class="btn icon-btn" id="themeButton" onclick="toggleTheme()" title="Theme">◐</button>
+                    <button class="btn" id="settingsButton" onclick="openSettings()">Settings</button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -735,81 +855,29 @@
         <div class="layout">
             <main>
                 <section class="view-head">
-                    <div>
-                        <p class="eyebrow" id="viewEyebrow">The Library Edit</p>
-                        <h2 class="title" id="viewTitle">Magazine Home</h2>
-                        <p class="subcopy" id="viewSubcopy">หน้าเปิดแบบนิตยสารสำหรับหนังสือเด่น เล่มที่กำลังอ่าน wishlist และภาพรวมประจำเดือน</p>
-                    </div>
+                    <p class="eyebrow" id="viewEyebrow">Library</p>
+                    <h2 class="title" id="viewTitle">Magazine</h2>
                 </section>
-
-                <div class="toolbar" id="mainToolbar">
-                    <input class="field" id="searchInput" type="search" placeholder="ค้นหาชื่อเรื่อง / แท็ก / ร้าน / review" oninput="renderCurrentView()">
-                    <select class="field" id="sortSelect" onchange="renderCurrentView()">
-                        <option value="latest">เพิ่มล่าสุด</option>
-                        <option value="name">ชื่อ A-Z</option>
-                        <option value="price">ราคาสูงสุด</option>
-                        <option value="rating">Rating สูงสุด</option>
-                        <option value="progress">อ่านคืบหน้าสุด</option>
-                    </select>
-                </div>
-
                 <div id="appView"></div>
             </main>
 
             <aside class="sidebar">
-                <button class="btn primary" style="width:100%; margin-bottom:12px;" onclick="openSeriesModal()">Add Series</button>
-                <button class="btn" style="width:100%; margin-bottom:26px;" onclick="openVolumeModal()">Add Volume</button>
-
+                <div class="side-block">
+                    <button class="btn primary" id="addBookSide" onclick="openBookModal()" style="width:100%; margin-bottom:10px;">Add Book</button>
+                    <button class="btn" id="addCollectionSide" onclick="openCollectionModal()" style="width:100%;">Add Collection</button>
+                </div>
                 <section class="side-block">
-                    <h3 class="side-title">Statistics</h3>
+                    <h3 class="side-title" id="statsTitle">Stats</h3>
                     <div class="stats-grid" id="statsGrid"></div>
                 </section>
-
                 <section class="side-block">
-                    <h3 class="side-title">Advanced Filter</h3>
-                    <div class="filter-grid">
-                        <select class="field" id="filterStatus" onchange="renderCurrentView()">
-                            <option value="">ทุกสถานะ</option>
-                            <option value="owned">มีแล้ว</option>
-                            <option value="reading">กำลังอ่าน</option>
-                            <option value="finished">อ่านจบแล้ว</option>
-                            <option value="wishlist">อยากซื้อ</option>
-                        </select>
-                        <input class="field" id="filterTag" placeholder="กรองแท็ก" oninput="renderCurrentView()">
-                        <input class="field" id="filterStore" placeholder="กรองร้านที่ซื้อ" oninput="renderCurrentView()">
-                        <select class="field" id="filterRating" onchange="renderCurrentView()">
-                            <option value="">ทุก rating</option>
-                            <option value="5">5 ดาว</option>
-                            <option value="4">4 ดาวขึ้นไป</option>
-                            <option value="3">3 ดาวขึ้นไป</option>
-                        </select>
-                        <select class="field" id="filterFavorite" onchange="renderCurrentView()">
-                            <option value="">ทั้งหมด</option>
-                            <option value="true">Favorite เท่านั้น</option>
-                        </select>
-                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-                            <input class="field" id="filterMinPrice" type="number" min="0" placeholder="ราคาต่ำ" oninput="renderCurrentView()">
-                            <input class="field" id="filterMaxPrice" type="number" min="0" placeholder="ราคาสูง" oninput="renderCurrentView()">
-                        </div>
-                        <input class="field" id="filterMonth" type="month" onchange="renderCurrentView()">
-                        <button class="btn" onclick="resetFilters()">Reset Filters</button>
-                    </div>
+                    <h3 class="side-title" id="quickTitle">Quick Tools</h3>
+                    <button class="btn" id="insightsButton" onclick="setView('insights')" style="width:100%; margin-bottom:8px;">Insights</button>
+                    <button class="btn subtle" id="dataToolsButton" onclick="openSettings('data')" style="width:100%;">Data Tools</button>
                 </section>
-
                 <section class="side-block">
-                    <h3 class="side-title">Backup</h3>
-                    <div class="data-actions">
-                        <button class="btn" onclick="exportData('json')">JSON</button>
-                        <button class="btn" onclick="exportData('csv')">CSV</button>
-                        <button class="btn" onclick="document.getElementById('importInput').click()">Import</button>
-                        <button class="btn" onclick="window.print()">Print</button>
-                    </div>
-                    <input type="file" id="importInput" accept="application/json" style="display:none" onchange="importData(this)">
-                </section>
-
-                <section class="side-block">
-                    <h3 class="side-title">Tags</h3>
-                    <p id="tagSummary" class="subcopy" style="margin:0;">ยังไม่มีแท็ก</p>
+                    <h3 class="side-title" id="tagsTitle">Tags</h3>
+                    <div class="tags" id="tagSummary"></div>
                 </section>
             </aside>
         </div>
@@ -817,161 +885,504 @@
 
     <div class="modal" id="entryModal" onclick="handleModalBackdrop(event)">
         <div class="modal-content">
-            <h2 id="modalTitle">Add Volume</h2>
-            <div class="form-layout">
-                <div class="inputs">
-                    <select class="field full volume-field" id="inputSeries"></select>
-                    <input class="field full" id="inputName" placeholder="ชื่อ">
-                    <input class="field series-field" id="inputPublisher" placeholder="สำนักพิมพ์">
-                    <input class="field" id="inputTags" placeholder="แท็ก เช่น นิยาย, แฟนตาซี">
-                    <input class="field volume-field" id="inputCollection" placeholder="Collection / Moodboard">
-                    <input class="field volume-field" id="inputPrice" type="number" min="0" placeholder="ราคา">
-                    <select class="field volume-field" id="inputStatus">
-                        <option value="owned">มีแล้ว</option>
-                        <option value="reading">กำลังอ่าน</option>
-                        <option value="finished">อ่านจบแล้ว</option>
-                        <option value="wishlist">อยากซื้อ</option>
-                    </select>
-                    <select class="field volume-field" id="inputPriority">
-                        <option value="">Priority</option>
-                        <option value="high">สูง</option>
-                        <option value="medium">กลาง</option>
-                        <option value="low">ต่ำ</option>
-                    </select>
-                    <input class="field volume-field" id="inputTargetPrice" type="number" min="0" placeholder="ราคาเป้าหมาย">
-                    <input class="field volume-field" id="inputShopLink" type="url" placeholder="ลิงก์ร้านค้า">
-                    <input class="field volume-field" id="inputPurchaseDate" type="date">
-                    <input class="field volume-field" id="inputStore" placeholder="ร้านที่ซื้อ">
-                    <input class="field volume-field" id="inputPagesRead" type="number" min="0" placeholder="อ่านถึงหน้า">
-                    <input class="field volume-field" id="inputTotalPages" type="number" min="0" placeholder="จำนวนหน้าทั้งหมด">
-                    <select class="field volume-field" id="inputRating">
-                        <option value="0">ยังไม่ให้ดาว</option>
-                        <option value="5">5 ดาว</option>
-                        <option value="4">4 ดาว</option>
-                        <option value="3">3 ดาว</option>
-                        <option value="2">2 ดาว</option>
-                        <option value="1">1 ดาว</option>
-                    </select>
-                    <select class="field volume-field" id="inputFavorite">
-                        <option value="false">ไม่ปัก Favorite</option>
-                        <option value="true">Favorite</option>
-                    </select>
-                    <textarea class="field full volume-field" id="inputReview" placeholder="Review / Note ส่วนตัว"></textarea>
-                </div>
-                <div>
-                    <div class="dropzone" onclick="document.getElementById('fileInput').click()">
-                        <div id="dropzoneContent">Add Cover</div>
-                        <img id="imagePreview" alt="" style="display:none;">
-                    </div>
-                    <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="previewImage(this)">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn primary" onclick="saveEntry()">Save</button>
-                <button class="btn" onclick="closeModal()">Cancel</button>
-            </div>
+            <h2 id="modalTitle">Add Book</h2>
+            <div id="modalBody"></div>
         </div>
     </div>
 
+    <div class="drawer-backdrop" id="settingsDrawer" onclick="handleDrawerBackdrop(event)">
+        <aside class="drawer">
+            <div style="display:flex; justify-content:space-between; gap:12px; align-items:start;">
+                <h2 id="settingsTitle">Settings</h2>
+                <button class="btn icon-btn" onclick="closeSettings()">×</button>
+            </div>
+            <div class="settings-section">
+                <h3 id="appearanceTitle">Appearance</h3>
+                <label id="languageLabel" for="settingsLanguage">Language</label>
+                <select class="field" id="settingsLanguage" onchange="setLanguage(this.value)" style="margin:6px 0 10px;">
+                    <option value="th">ไทย</option>
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                </select>
+                <button class="btn" id="themeDrawerButton" onclick="toggleTheme()" style="width:100%;">Theme</button>
+            </div>
+            <div class="settings-section">
+                <h3 id="coverTitle">Home Cover</h3>
+                <p class="helper" id="coverHelp">เลือกรูปหน้าแรกเอง หรือใช้รูปอัตโนมัติจากหนังสือในคลัง</p>
+                <input class="field" id="homeCoverInput" type="file" accept="image/*" onchange="setHomeCover(this)" style="margin:10px 0;">
+                <button class="btn" id="clearCoverButton" onclick="clearHomeCover()" style="width:100%;">Use Auto Cover</button>
+            </div>
+            <div class="settings-section" id="dataSection">
+                <h3 id="dataTitle">Data Tools</h3>
+                <p class="notice" id="backupNotice">Your data is saved on this device. Export JSON regularly to avoid data loss.</p>
+                <div class="actions">
+                    <button class="btn primary" onclick="exportData('json')" id="exportJsonButton">Export JSON</button>
+                    <button class="btn" onclick="document.getElementById('importInput').click()" id="importButton">Import</button>
+                    <button class="btn subtle" onclick="exportData('csv')" id="exportCsvButton">CSV</button>
+                    <button class="btn subtle" onclick="window.print()" id="printButton">Print</button>
+                </div>
+                <input type="file" id="importInput" accept="application/json" style="display:none" onchange="importData(this)">
+            </div>
+            <div class="settings-section">
+                <h3 id="dangerTitle">Reset</h3>
+                <button class="btn danger" id="resetButton" onclick="resetData()" style="width:100%;">Reset Data</button>
+            </div>
+        </aside>
+    </div>
+
     <script>
-        const STORAGE_KEY = "vogueBookArchivePro";
-        const LEGACY_KEYS = ["vogueBookArchive", "voxSeriesLibrary"];
+        const STORAGE_KEY = "archiveLibraryV2";
+        const LEGACY_KEYS = ["vo" + "gueBookArchivePro", "vo" + "gueBookArchive", "voxSeriesLibrary"];
         const PLACEHOLDER_IMAGE = "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=900";
-        const statusLabels = { owned: "มีแล้ว", reading: "กำลังอ่าน", finished: "อ่านจบแล้ว", wishlist: "อยากซื้อ" };
-        const priorityLabels = { high: "สูง", medium: "กลาง", low: "ต่ำ" };
 
-        let libraryData = loadLibrary();
-        let currentView = "home";
-        let modalMode = "volume";
-        let editingSeriesId = "";
-        let editingVolumeId = "";
-        let selectedSeriesId = "";
-        let selectedVolumeId = "";
-        let globalImageData = "";
-
-        function loadLibrary() {
-            const saved = localStorage.getItem(STORAGE_KEY) || LEGACY_KEYS.map(key => localStorage.getItem(key)).find(Boolean);
-            if (saved) {
-                try { return normalizeLibrary(JSON.parse(saved)); } catch (error) { console.warn(error); }
+        const translations = {
+            th: {
+                topLabel: "คลังหนังสือส่วนตัว",
+                issueLabel: "คลังส่วนตัว",
+                books: "หนังสือ",
+                unread: "ยังไม่ได้อ่าน",
+                read: "อ่านแล้ว",
+                navHome: "หน้าแรก",
+                navLibrary: "คลังหนังสือ",
+                navWishlist: "หนังสือที่อยากซื้อ",
+                navCollections: "คอลเลกชัน",
+                settings: "ตั้งค่า",
+                addBook: "เพิ่มหนังสือ",
+                addCollection: "เพิ่มคอลเลกชัน",
+                stats: "สถิติ",
+                quickTools: "เครื่องมือ",
+                insights: "สรุปข้อมูล",
+                dataTools: "จัดการข้อมูล",
+                tags: "ป้ายกำกับ",
+                magazine: "หน้าแรก",
+                magazineEyebrow: "คลังหนังสือ",
+                library: "คลังหนังสือ",
+                wishlist: "อยากซื้อ",
+                collections: "คอลเลกชัน",
+                collection: "คอลเลกชัน",
+                allBooks: "หนังสือทั้งหมด",
+                coverStory: "เล่มเด่น",
+                currentlyReading: "กำลังอ่าน",
+                thisMonth: "เดือนนี้",
+                noReading: "ยังไม่มีเล่มที่กำลังอ่าน",
+                noWishlist: "ยังไม่มีรายการอยากซื้อ",
+                startCollection: "เริ่มคลังหนังสือของคุณ",
+                startCollectionText: "เพิ่มหนังสือเล่มแรก หรือนำเข้าไฟล์ JSON ที่เคยสำรองไว้",
+                importData: "นำเข้าข้อมูล",
+                search: "ค้นหาชื่อหนังสือ ผู้เขียน แท็ก ร้าน หรือรีวิว",
+                allStatus: "ทุกสถานะ",
+                allTypes: "ทุกประเภท",
+                allCollections: "ทุกคอลเลกชัน",
+                sortLatest: "เพิ่มล่าสุด",
+                sortTitle: "ชื่อ A-Z",
+                sortPrice: "ราคาสูงสุด",
+                sortRating: "Rating สูงสุด",
+                sortProgress: "อ่านคืบหน้าสุด",
+                editorial: "รายละเอียด",
+                shelf: "ชั้นหนังสือ",
+                list: "รายการ",
+                edit: "แก้ไข",
+                delete: "ลบ",
+                back: "กลับ",
+                save: "บันทึก",
+                cancel: "ยกเลิก",
+                title: "ชื่อหนังสือ",
+                author: "ผู้เขียน",
+                type: "ประเภท",
+                status: "สถานะ",
+                price: "ราคา",
+                targetPrice: "ราคาเป้าหมาย",
+                purchaseDate: "วันที่ซื้อ",
+                store: "ร้านที่ซื้อ",
+                pagesRead: "อ่านถึงหน้า",
+                totalPages: "จำนวนหน้าทั้งหมด",
+                rating: "คะแนน",
+                favorite: "รายการโปรด",
+                review: "รีวิว / โน้ต",
+                cover: "ปกหนังสือ",
+                shopLink: "ลิงก์ร้านค้า",
+                priority: "ความสำคัญ",
+                newCollection: "คอลเลกชันใหม่",
+                noCollection: "ไม่อยู่ในคอลเลกชัน",
+                settingsTitle: "ตั้งค่า",
+                appearance: "หน้าตาเว็บ",
+                language: "ภาษา",
+                theme: "ธีม",
+                homeCover: "รูปหน้าแรก",
+                coverHelp: "เลือกรูปหน้าแรกเอง หรือใช้รูปอัตโนมัติจากหนังสือในคลัง",
+                autoCover: "ใช้รูปอัตโนมัติ",
+                backupNotice: "ข้อมูลถูกเก็บไว้ในอุปกรณ์นี้ ควร Export JSON สำรองเป็นระยะ",
+                exportJson: "สำรอง JSON",
+                exportCsv: "CSV",
+                print: "พิมพ์",
+                reset: "ล้างข้อมูล",
+                resetData: "ล้างข้อมูลทั้งหมด",
+                noBooks: "ยังไม่มีหนังสือ",
+                noResults: "ไม่พบรายการที่ตรงกับการค้นหา",
+                confirmDeleteBook: "ลบหนังสือเล่มนี้ใช่ไหม?",
+                confirmDeleteCollection: "ลบคอลเลกชันนี้ใช่ไหม? หนังสือจะยังอยู่ แต่จะถูกเอาออกจากคอลเลกชัน",
+                confirmReset: "ลบข้อมูลทั้งหมดในเครื่องนี้ใช่ไหม?",
+                importConfirm: "นำเข้าข้อมูลใหม่และแทนที่ข้อมูลเดิมใช่ไหม?",
+                invalidImport: "ไฟล์นำเข้าไม่ถูกต้อง",
+                imageWarning: "แนะนำใช้รูปขนาดไม่ใหญ่มาก ระบบจะย่อรูปก่อนบันทึกเพื่อประหยัดพื้นที่",
+                standalone: "หนังสือเดี่ยว",
+                booksThisMonth: "ซื้อเดือนนี้",
+                finishedBooks: "อ่านจบ",
+                totalSpent: "ยอดรวม",
+                averageProgress: "ความคืบหน้า",
+                bookTypes: "ประเภทที่มี",
+                topStores: "ร้านที่ซื้อบ่อย",
+                emptyReview: "ยังไม่มีรีวิว",
+                none: "ไม่มี",
+                imageSaved: "เลือกรูปแล้ว",
+                publisher: "สำนักพิมพ์",
+                addWishlist: "เพิ่มหนังสือที่อยากซื้อ",
+                openCollection: "เปิดดู",
+                booksInCollection: "เล่มในเรื่องนี้",
+                noCollectionBooks: "ยังไม่มีเล่มในเรื่องนี้",
+                latestBooks: "เล่มล่าสุด",
+                collectionLibrary: "คลังตามเรื่อง"
+            },
+            en: {
+                topLabel: "Personal Library",
+                issueLabel: "Private Library",
+                books: "Books",
+                unread: "Unread",
+                read: "Read",
+                navHome: "Home",
+                navLibrary: "Library",
+                navWishlist: "Wishlist",
+                navCollections: "Collections",
+                settings: "Settings",
+                addBook: "Add Book",
+                addCollection: "Add Collection",
+                stats: "Stats",
+                quickTools: "Quick Tools",
+                insights: "Insights",
+                dataTools: "Data Tools",
+                tags: "Tags",
+                magazine: "Home",
+                magazineEyebrow: "Library",
+                library: "Library",
+                wishlist: "Wishlist",
+                collections: "Collections",
+                collection: "Collection",
+                allBooks: "All books",
+                coverStory: "Featured Book",
+                currentlyReading: "Reading Now",
+                thisMonth: "This Month",
+                noReading: "No current read",
+                noWishlist: "No wishlist yet",
+                startCollection: "Start your library",
+                startCollectionText: "Add your first book or import a JSON backup.",
+                importData: "Import Data",
+                search: "Search title, author, tag, store, or review",
+                allStatus: "All status",
+                allTypes: "All types",
+                allCollections: "All collections",
+                sortLatest: "Latest",
+                sortTitle: "Title A-Z",
+                sortPrice: "Highest price",
+                sortRating: "Top rated",
+                sortProgress: "Most progress",
+                editorial: "Editorial",
+                shelf: "Shelf",
+                list: "List",
+                edit: "Edit",
+                delete: "Delete",
+                back: "Back",
+                save: "Save",
+                cancel: "Cancel",
+                title: "Book title",
+                author: "Author",
+                type: "Type",
+                status: "Status",
+                price: "Price",
+                targetPrice: "Target price",
+                purchaseDate: "Purchase date",
+                store: "Store",
+                pagesRead: "Pages read",
+                totalPages: "Total pages",
+                rating: "Rating",
+                favorite: "Favorite",
+                review: "Review / Notes",
+                cover: "Book cover",
+                shopLink: "Shop link",
+                priority: "Priority",
+                newCollection: "New collection",
+                noCollection: "No collection",
+                settingsTitle: "Settings",
+                appearance: "Appearance",
+                language: "Language",
+                theme: "Theme",
+                homeCover: "Home Cover",
+                coverHelp: "Choose a custom home image, or keep auto mode from your books.",
+                autoCover: "Use Auto Cover",
+                backupNotice: "Your data is saved on this device. Export JSON regularly to avoid data loss.",
+                exportJson: "Export JSON",
+                exportCsv: "CSV",
+                print: "Print",
+                reset: "Reset",
+                resetData: "Reset Data",
+                noBooks: "No books yet",
+                noResults: "No matching results",
+                confirmDeleteBook: "Delete this book?",
+                confirmDeleteCollection: "Delete this collection? Books will remain unfiled.",
+                confirmReset: "Delete all data on this device?",
+                importConfirm: "Import new data and replace current data?",
+                invalidImport: "Invalid import file",
+                imageWarning: "Use reasonably sized images. The app compresses images before saving.",
+                standalone: "Standalone",
+                booksThisMonth: "Books this month",
+                finishedBooks: "Finished",
+                totalSpent: "Total spent",
+                averageProgress: "Progress",
+                bookTypes: "Book types",
+                topStores: "Top stores",
+                emptyReview: "No review yet",
+                none: "None",
+                imageSaved: "Image selected",
+                publisher: "Publisher",
+                addWishlist: "Add Wishlist Book",
+                openCollection: "Open",
+                booksInCollection: "Books in this collection",
+                noCollectionBooks: "No books in this collection yet",
+                latestBooks: "Latest books",
+                collectionLibrary: "Series Library"
+            },
+            es: {
+                topLabel: "Biblioteca personal",
+                issueLabel: "Biblioteca privada",
+                books: "Libros",
+                unread: "Sin leer",
+                read: "Leído",
+                navHome: "Inicio",
+                navLibrary: "Biblioteca",
+                navWishlist: "Deseos",
+                navCollections: "Colecciones",
+                settings: "Ajustes",
+                addBook: "Añadir libro",
+                addCollection: "Añadir colección",
+                stats: "Datos",
+                quickTools: "Herramientas",
+                insights: "Informe",
+                dataTools: "Datos",
+                tags: "Etiquetas",
+                magazine: "Inicio",
+                magazineEyebrow: "Biblioteca",
+                library: "Biblioteca",
+                wishlist: "Lista de deseos",
+                collections: "Colecciones",
+                collection: "Colección",
+                allBooks: "Todos los libros",
+                coverStory: "Libro destacado",
+                currentlyReading: "Leyendo",
+                thisMonth: "Este mes",
+                noReading: "Sin lectura actual",
+                noWishlist: "Sin deseos",
+                startCollection: "Empieza tu biblioteca",
+                startCollectionText: "Añade tu primer libro o importa una copia JSON.",
+                importData: "Importar datos",
+                search: "Buscar título, autor, etiqueta, tienda o reseña",
+                allStatus: "Todos los estados",
+                allTypes: "Todos los tipos",
+                allCollections: "Todas las colecciones",
+                sortLatest: "Recientes",
+                sortTitle: "Título A-Z",
+                sortPrice: "Precio alto",
+                sortRating: "Mejor rating",
+                sortProgress: "Más progreso",
+                editorial: "Editorial",
+                shelf: "Estantería",
+                list: "Lista",
+                edit: "Editar",
+                delete: "Borrar",
+                back: "Volver",
+                save: "Guardar",
+                cancel: "Cancelar",
+                title: "Título",
+                author: "Autor",
+                type: "Tipo",
+                status: "Estado",
+                price: "Precio",
+                targetPrice: "Precio objetivo",
+                purchaseDate: "Fecha de compra",
+                store: "Tienda",
+                pagesRead: "Páginas leídas",
+                totalPages: "Páginas totales",
+                rating: "Rating",
+                favorite: "Favorito",
+                review: "Reseña / Notas",
+                cover: "Portada",
+                shopLink: "Enlace de tienda",
+                priority: "Prioridad",
+                newCollection: "Nueva colección",
+                noCollection: "Sin colección",
+                settingsTitle: "Ajustes",
+                appearance: "Apariencia",
+                language: "Idioma",
+                theme: "Tema",
+                homeCover: "Portada inicial",
+                coverHelp: "Elige una imagen para la portada inicial o usa el modo automático.",
+                autoCover: "Usar portada auto",
+                backupNotice: "Tus datos se guardan en este dispositivo. Exporta JSON regularmente.",
+                exportJson: "Exportar JSON",
+                exportCsv: "CSV",
+                print: "Imprimir",
+                reset: "Reiniciar",
+                resetData: "Borrar datos",
+                noBooks: "Aún no hay libros",
+                noResults: "Sin resultados",
+                confirmDeleteBook: "¿Borrar este libro?",
+                confirmDeleteCollection: "¿Borrar esta colección? Los libros no se borrarán.",
+                confirmReset: "¿Borrar todos los datos de este dispositivo?",
+                importConfirm: "¿Importar datos nuevos y reemplazar los actuales?",
+                invalidImport: "Archivo inválido",
+                imageWarning: "Usa imágenes razonables. La app comprime imágenes antes de guardar.",
+                standalone: "Independiente",
+                booksThisMonth: "Libros este mes",
+                finishedBooks: "Terminados",
+                totalSpent: "Total",
+                averageProgress: "Progreso",
+                bookTypes: "Tipos",
+                topStores: "Tiendas",
+                emptyReview: "Sin reseña",
+                none: "Ninguno",
+                imageSaved: "Imagen seleccionada",
+                publisher: "Editorial",
+                addWishlist: "Añadir deseo",
+                openCollection: "Abrir",
+                booksInCollection: "Libros en esta colección",
+                noCollectionBooks: "Aún no hay libros en esta colección",
+                latestBooks: "Libros recientes",
+                collectionLibrary: "Biblioteca por series"
             }
-            return normalizeLibrary(seedData());
+        };
+
+        const statusKeys = ["unread", "reading", "finished", "wishlist", "owned"];
+        const statusText = {
+            th: { unread: "ยังไม่ได้อ่าน", reading: "กำลังอ่าน", finished: "อ่านจบแล้ว", wishlist: "อยากซื้อ", owned: "มีแล้ว" },
+            en: { unread: "Unread", reading: "Reading", finished: "Finished", wishlist: "Wishlist", owned: "Owned" },
+            es: { unread: "Sin leer", reading: "Leyendo", finished: "Terminado", wishlist: "Deseado", owned: "Tengo" }
+        };
+        const typeKeys = ["fiction", "manga", "business", "selfhelp", "education", "art", "other"];
+        const typeText = {
+            th: { fiction: "นิยาย", manga: "มังงะ / Comics", business: "ธุรกิจ", selfhelp: "พัฒนาตัวเอง", education: "การศึกษา", art: "ศิลปะ / ดีไซน์", other: "อื่น ๆ" },
+            en: { fiction: "Fiction", manga: "Manga / Comics", business: "Business", selfhelp: "Self-help", education: "Education", art: "Art / Design", other: "Other" },
+            es: { fiction: "Ficción", manga: "Manga / Comics", business: "Negocios", selfhelp: "Autoayuda", education: "Educación", art: "Arte / Diseño", other: "Otro" }
+        };
+        const priorityText = {
+            th: { high: "สูง", medium: "กลาง", low: "ต่ำ", "": "-" },
+            en: { high: "High", medium: "Medium", low: "Low", "": "-" },
+            es: { high: "Alta", medium: "Media", low: "Baja", "": "-" }
+        };
+
+        let archive = loadArchive();
+        let currentView = "home";
+        let libraryMode = localStorage.getItem("archiveLibraryMode") || "editorial";
+        let selectedBookId = "";
+        let selectedCollectionId = "";
+        let editingImage = "";
+        let modalDefaults = {};
+        let currentLang = localStorage.getItem("archiveLanguage") || "th";
+        let homeFeatureIndex = 0;
+        let homeFeatureIds = [];
+        let homeFeatureTimer = null;
+        let homeFeatureSourceKey = "";
+
+        function t(key) {
+            return (translations[currentLang] && translations[currentLang][key]) || translations.en[key] || key;
         }
 
-        function seedData() {
-            return [{
-                id: "series_1",
-                title: "Harry Potter",
-                publisher: "นานมีบุ๊คส์",
-                tags: ["แฟนตาซี", "นิยาย"],
-                coverImage: "",
-                createdAt: Date.now() - 500000,
-                volumes: [
-                    {
-                        id: "volume_1",
-                        name: "ศิลาอาถรรพ์",
-                        price: 395,
-                        purchaseDate: "2026-05-20",
-                        store: "ร้านหนังสือ",
-                        pagesRead: 320,
-                        totalPages: 320,
-                        status: "finished",
-                        rating: 5,
-                        favorite: true,
-                        review: "เล่มเปิดโลกที่ยังอ่านสนุกทุกครั้ง บรรยากาศคลาสสิกมาก",
-                        tags: ["แฟนตาซี", "อ่านซ้ำได้"],
-                        collection: "Books that changed me",
-                        image: ""
-                    },
-                    {
-                        id: "volume_2",
-                        name: "ห้องแห่งความลับ",
-                        price: 425,
-                        purchaseDate: "2026-05-25",
-                        store: "ออนไลน์",
-                        pagesRead: 140,
-                        totalPages: 360,
-                        status: "reading",
-                        rating: 4,
-                        favorite: false,
-                        review: "",
-                        tags: ["แฟนตาซี"],
-                        collection: "Currently Reading",
-                        image: ""
-                    }
-                ]
-            }];
+        function loadArchive() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                try { return normalizeArchive(JSON.parse(saved)); } catch (error) { console.warn(error); }
+            }
+
+            const legacy = LEGACY_KEYS.map(key => localStorage.getItem(key)).find(Boolean);
+            if (legacy) {
+                try { return normalizeArchive(JSON.parse(legacy)); } catch (error) { console.warn(error); }
+            }
+
+            return normalizeArchive({ books: [], collections: [], settings: {} });
         }
 
-        function normalizeLibrary(data) {
-            if (!Array.isArray(data)) return [];
-            return data.map((series, i) => ({
-                id: series.id || `series_${Date.now()}_${i}`,
-                title: series.title || "ไม่มีชื่อเรื่อง",
-                publisher: series.publisher || "-",
-                tags: normalizeTags(series.tags),
-                coverImage: series.coverImage || "",
-                createdAt: Number(series.createdAt) || Date.now() - i,
-                volumes: Array.isArray(series.volumes) ? series.volumes.map((volume, j) => ({
-                    id: volume.id || `volume_${Date.now()}_${i}_${j}`,
-                    name: volume.name || "ไม่มีชื่อเล่ม",
-                    price: Number(volume.price) || 0,
-                    date: normalizeDate(volume.date) || todayISO(),
-                    purchaseDate: normalizeDate(volume.purchaseDate || volume.date) || "",
-                    store: volume.store || "",
-                    pagesRead: Number(volume.pagesRead) || 0,
-                    totalPages: Number(volume.totalPages) || 0,
-                    status: volume.status || "owned",
-                    rating: Number(volume.rating) || 0,
-                    favorite: Boolean(volume.favorite),
-                    review: volume.review || volume.note || "",
-                    tags: normalizeTags(volume.tags),
-                    collection: volume.collection || "",
-                    wishlistPriority: volume.wishlistPriority || volume.priority || "",
-                    targetPrice: Number(volume.targetPrice) || 0,
-                    shopLink: volume.shopLink || "",
-                    image: volume.image || ""
-                })) : []
-            }));
+        function normalizeArchive(value) {
+            if (Array.isArray(value)) return migrateSeriesArchive(value);
+            const collections = Array.isArray(value.collections) ? value.collections.map((collection, index) => ({
+                id: collection.id || `collection_${Date.now()}_${index}`,
+                name: collection.name || collection.title || "Collection",
+                description: collection.description || "",
+                tags: normalizeTags(collection.tags),
+                coverImage: collection.coverImage || "",
+                createdAt: Number(collection.createdAt) || Date.now() - index
+            })) : [];
+
+            const books = Array.isArray(value.books) ? value.books.map((book, index) => normalizeBook(book, index)) : [];
+            return {
+                books,
+                collections,
+                settings: {
+                    homeCoverImage: value.settings && value.settings.homeCoverImage ? value.settings.homeCoverImage : "",
+                    homeCoverMode: value.settings && value.settings.homeCoverMode ? value.settings.homeCoverMode : "auto"
+                }
+            };
+        }
+
+        function migrateSeriesArchive(seriesList) {
+            const collections = [];
+            const books = [];
+            seriesList.forEach((series, seriesIndex) => {
+                const collectionId = series.id || `collection_${Date.now()}_${seriesIndex}`;
+                collections.push({
+                    id: collectionId,
+                    name: series.title || "Collection",
+                    description: series.publisher || "",
+                    tags: normalizeTags(series.tags),
+                    coverImage: series.coverImage || "",
+                    createdAt: Number(series.createdAt) || Date.now() - seriesIndex
+                });
+                (series.volumes || []).forEach((volume, volumeIndex) => {
+                    books.push(normalizeBook({
+                        ...volume,
+                        title: volume.name,
+                        collectionId,
+                        author: series.publisher,
+                        publisher: series.publisher,
+                        coverImage: volume.image,
+                        review: volume.review || volume.note,
+                        type: "fiction"
+                    }, `${seriesIndex}_${volumeIndex}`));
+                });
+            });
+            return { books, collections, settings: { homeCoverImage: "", homeCoverMode: "auto" } };
+        }
+
+        function normalizeBook(book, index) {
+            return {
+                id: book.id || `book_${Date.now()}_${index}`,
+                title: book.title || book.name || "Untitled",
+                author: book.author || "",
+                publisher: book.publisher || "",
+                collectionId: book.collectionId || "",
+                type: book.type || "other",
+                status: book.status || "unread",
+                price: Number(book.price) || 0,
+                targetPrice: Number(book.targetPrice) || 0,
+                purchaseDate: normalizeDate(book.purchaseDate || book.date) || "",
+                store: book.store || "",
+                pagesRead: Number(book.pagesRead) || 0,
+                totalPages: Number(book.totalPages) || 0,
+                rating: Number(book.rating) || 0,
+                favorite: Boolean(book.favorite),
+                review: book.review || book.note || "",
+                tags: normalizeTags(book.tags),
+                coverImage: book.coverImage || book.image || "",
+                shopLink: book.shopLink || "",
+                priority: book.priority || book.wishlistPriority || "",
+                createdAt: Number(book.createdAt) || Date.now()
+            };
         }
 
         function normalizeTags(value) {
@@ -983,282 +1394,565 @@
         function normalizeDate(value) {
             if (!value) return "";
             if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
-            const m = String(value).match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-            return m ? `${m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}` : "";
+            const match = String(value).match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+            if (!match) return "";
+            return `${match[3]}-${match[2].padStart(2, "0")}-${match[1].padStart(2, "0")}`;
         }
 
-        function todayISO() { return new Date().toISOString().slice(0, 10); }
-        function saveLibrary() { localStorage.setItem(STORAGE_KEY, JSON.stringify(libraryData)); }
-        function money(value) { return `฿${Number(value || 0).toLocaleString("th-TH", { maximumFractionDigits: 0 })}`; }
+        function saveArchive() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(archive));
+        }
+
+        function todayISO() {
+            return new Date().toISOString().slice(0, 10);
+        }
+
         function escapeHtml(value) {
-            return String(value ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
+            return String(value ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
         }
-        function stars(rating) { return `<span class="stars">${"★".repeat(rating)}${"☆".repeat(5 - rating)}</span>`; }
-        function progress(volume) {
-            if (volume.status === "finished") return 100;
-            if (!volume.totalPages) return 0;
-            return Math.min(100, Math.round((volume.pagesRead / volume.totalPages) * 100));
+
+        function money(value) {
+            return `฿${Number(value || 0).toLocaleString("th-TH", { maximumFractionDigits: 0 })}`;
         }
-        function allVolumes() {
-            return libraryData.flatMap(series => series.volumes.map(volume => ({ ...volume, seriesId: series.id, seriesTitle: series.title, publisher: series.publisher })));
+
+        function getCollection(id) {
+            return archive.collections.find(collection => collection.id === id);
         }
-        function seriesTotal(series) { return series.volumes.reduce((sum, volume) => sum + volume.price, 0); }
-        function seriesCover(series) {
-            const v = [...series.volumes].reverse().find(volume => volume.image);
-            return series.coverImage || (v && v.image) || PLACEHOLDER_IMAGE;
+
+        function collectionName(id) {
+            const collection = getCollection(id);
+            return collection ? collection.name : t("standalone");
+        }
+
+        function progress(book) {
+            if (book.status === "finished") return 100;
+            if (!book.totalPages) return 0;
+            return Math.max(0, Math.min(100, Math.round((book.pagesRead / book.totalPages) * 100)));
+        }
+
+        function stars(value) {
+            const rating = Math.max(0, Math.min(5, Number(value) || 0));
+            return `<span class="stars">${"★".repeat(rating)}${"☆".repeat(5 - rating)}</span>`;
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem("archiveLanguage", lang);
+            document.documentElement.lang = lang === "es" ? "es" : lang;
+            renderCurrentView();
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+            localStorage.setItem("archiveTheme", document.body.classList.contains("dark") ? "dark" : "light");
+        }
+
+        function applyTheme() {
+            if (localStorage.getItem("archiveTheme") === "dark") document.body.classList.add("dark");
         }
 
         function setView(view) {
             currentView = view;
-            document.querySelectorAll("[data-view]").forEach(button => button.classList.toggle("active", button.dataset.view === view));
+            selectedBookId = "";
+            if (view !== "collection") selectedCollectionId = "";
             renderCurrentView();
         }
 
         function renderCurrentView() {
-            updateStats();
-            const toolbar = document.getElementById("mainToolbar");
-            toolbar.style.display = ["dashboard", "home"].includes(currentView) ? "none" : "grid";
+            renderShell();
+            syncHomeFeatureTimer();
             if (currentView === "home") renderHome();
-            if (currentView === "archive") renderArchive();
-            if (currentView === "shelf") renderShelf();
+            if (currentView === "library") renderLibrary();
             if (currentView === "wishlist") renderWishlist();
-            if (currentView === "dashboard") renderDashboard();
             if (currentView === "collections") renderCollections();
-            if (currentView === "series") renderSeriesDetail(selectedSeriesId);
-            if (currentView === "book") renderBookDetail(selectedSeriesId, selectedVolumeId);
+            if (currentView === "insights") renderInsights();
+            if (currentView === "book") renderBookDetail(selectedBookId);
+            if (currentView === "collection") renderCollectionDetail(selectedCollectionId);
         }
 
-        function setHeader(eyebrow, title, subcopy) {
+        function syncHomeFeatureTimer() {
+            if (currentView !== "home") {
+                if (homeFeatureTimer) clearInterval(homeFeatureTimer);
+                homeFeatureTimer = null;
+                return;
+            }
+            if (!homeFeatureTimer) {
+                homeFeatureTimer = setInterval(() => {
+                    if (currentView !== "home") return syncHomeFeatureTimer();
+                    const pool = getHomeFeaturePool();
+                    if (pool.length < 2) return;
+                    homeFeatureIndex = pickNextFeatureIndex(pool.length);
+                    renderHome();
+                }, 4500);
+            }
+        }
+
+        function renderShell() {
+            document.getElementById("languageSelect").value = currentLang;
+            document.getElementById("settingsLanguage").value = currentLang;
+            document.getElementById("topLabel").innerText = t("topLabel");
+            document.getElementById("issueLabel").innerText = t("issueLabel");
+            document.getElementById("issueBooksLabel").innerText = t("books");
+            document.getElementById("issueUnreadLabel").innerText = t("unread");
+            document.getElementById("issueReadLabel").innerText = t("read");
+            document.getElementById("navHome").innerText = t("navHome");
+            document.getElementById("navLibrary").innerText = t("navLibrary");
+            document.getElementById("navWishlist").innerText = t("navWishlist");
+            document.getElementById("navCollections").innerText = t("navCollections");
+            document.getElementById("settingsButton").innerText = t("settings");
+            document.getElementById("addBookSide").innerText = t("addBook");
+            document.getElementById("addCollectionSide").innerText = t("addCollection");
+            document.getElementById("statsTitle").innerText = t("stats");
+            document.getElementById("quickTitle").innerText = t("quickTools");
+            document.getElementById("insightsButton").innerText = t("insights");
+            document.getElementById("dataToolsButton").innerText = t("dataTools");
+            document.getElementById("tagsTitle").innerText = t("tags");
+            document.getElementById("settingsTitle").innerText = t("settingsTitle");
+            document.getElementById("appearanceTitle").innerText = t("appearance");
+            document.getElementById("languageLabel").innerText = t("language");
+            document.getElementById("themeDrawerButton").innerText = t("theme");
+            document.getElementById("coverTitle").innerText = t("homeCover");
+            document.getElementById("coverHelp").innerText = t("coverHelp");
+            document.getElementById("clearCoverButton").innerText = t("autoCover");
+            document.getElementById("dataTitle").innerText = t("dataTools");
+            document.getElementById("backupNotice").innerText = t("backupNotice");
+            document.getElementById("exportJsonButton").innerText = t("exportJson");
+            document.getElementById("exportCsvButton").innerText = t("exportCsv");
+            document.getElementById("importButton").innerText = t("importData");
+            document.getElementById("printButton").innerText = t("print");
+            document.getElementById("dangerTitle").innerText = t("reset");
+            document.getElementById("resetButton").innerText = t("resetData");
+            document.querySelectorAll("[data-view]").forEach(button => button.classList.toggle("active", button.dataset.view === currentView));
+            document.getElementById("todayLabel").innerText = new Date().toLocaleDateString(currentLang === "th" ? "th-TH" : currentLang === "es" ? "es-ES" : "en-US", { year: "numeric", month: "long", day: "numeric" });
+            updateStats();
+        }
+
+        function updateStats() {
+            const books = archive.books;
+            const total = books.reduce((sum, book) => sum + book.price, 0);
+            const avgProgress = books.length ? Math.round(books.reduce((sum, book) => sum + progress(book), 0) / books.length) : 0;
+            document.getElementById("issueBooks").innerText = books.length;
+            document.getElementById("issueUnread").innerText = books.filter(book => book.status === "unread").length;
+            document.getElementById("issueProgress").innerText = `${avgProgress}%`;
+            document.getElementById("totalSpent").innerText = money(total);
+            document.getElementById("statsGrid").innerHTML = `
+                <div class="stat"><span>${escapeHtml(t("books"))}</span><strong>${books.length}</strong></div>
+                <div class="stat"><span>${escapeHtml(t("collections"))}</span><strong>${archive.collections.length}</strong></div>
+                <div class="stat"><span>${escapeHtml(statusText[currentLang].wishlist)}</span><strong>${books.filter(book => book.status === "wishlist").length}</strong></div>
+                <div class="stat"><span>${escapeHtml(statusText[currentLang].finished)}</span><strong>${books.filter(book => book.status === "finished").length}</strong></div>
+                <div class="stat"><span>${escapeHtml(t("read"))}</span><strong>${avgProgress}%</strong></div>
+                <div class="stat"><span>${escapeHtml(t("totalSpent"))}</span><strong>${money(total)}</strong></div>
+            `;
+            const tags = [...new Set(books.flatMap(book => book.tags).concat(archive.collections.flatMap(collection => collection.tags)))];
+            document.getElementById("tagSummary").innerHTML = tags.length ? tags.slice(0, 12).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("") : `<p class="helper">${escapeHtml(t("noBooks"))}</p>`;
+        }
+
+        function setHeader(eyebrow, title) {
             document.getElementById("viewEyebrow").innerText = eyebrow;
             document.getElementById("viewTitle").innerText = title;
-            document.getElementById("viewSubcopy").innerText = subcopy;
         }
 
-        function filteredVolumes(source = allVolumes()) {
-            const q = document.getElementById("searchInput").value.trim().toLowerCase();
-            const status = document.getElementById("filterStatus").value;
-            const tag = document.getElementById("filterTag").value.trim().toLowerCase();
-            const store = document.getElementById("filterStore").value.trim().toLowerCase();
-            const minRating = Number(document.getElementById("filterRating").value || 0);
-            const favorite = document.getElementById("filterFavorite").value;
-            const minPrice = Number(document.getElementById("filterMinPrice").value || 0);
-            const maxPrice = Number(document.getElementById("filterMaxPrice").value || 0);
-            const month = document.getElementById("filterMonth").value;
+        function getHomeFeaturePool() {
+            const books = archive.books;
+            const sourceKey = books.map(book => book.id).join("|");
+            if (homeFeatureSourceKey !== sourceKey || !homeFeatureIds.length || homeFeatureIds.some(id => !books.find(book => book.id === id))) {
+                homeFeatureIds = [...books]
+                    .sort(() => Math.random() - 0.5)
+                    .slice(0, 10)
+                    .map(book => book.id);
+                homeFeatureIndex = 0;
+                homeFeatureSourceKey = sourceKey;
+            }
+            return homeFeatureIds.map(id => books.find(book => book.id === id)).filter(Boolean);
+        }
 
-            let list = source.filter(volume => {
-                const haystack = [volume.name, volume.seriesTitle, volume.publisher, volume.store, volume.review, volume.collection, statusLabels[volume.status], ...volume.tags].join(" ").toLowerCase();
-                if (q && !haystack.includes(q)) return false;
-                if (status && volume.status !== status) return false;
-                if (tag && !volume.tags.join(" ").toLowerCase().includes(tag)) return false;
-                if (store && !String(volume.store).toLowerCase().includes(store)) return false;
-                if (minRating && volume.rating < minRating) return false;
-                if (favorite === "true" && !volume.favorite) return false;
-                if (minPrice && volume.price < minPrice) return false;
-                if (maxPrice && volume.price > maxPrice) return false;
-                if (month && !String(volume.purchaseDate || volume.date).startsWith(month)) return false;
-                return true;
-            });
-
-            const sort = document.getElementById("sortSelect").value;
-            list.sort((a, b) => {
-                if (sort === "name") return a.name.localeCompare(b.name, "th");
-                if (sort === "price") return b.price - a.price;
-                if (sort === "rating") return b.rating - a.rating;
-                if (sort === "progress") return progress(b) - progress(a);
-                return String(b.id).localeCompare(String(a.id));
-            });
-            return list;
+        function pickNextFeatureIndex(length) {
+            if (length <= 1) return 0;
+            let next = Math.floor(Math.random() * length);
+            if (next === homeFeatureIndex) next = (next + 1) % length;
+            return next;
         }
 
         function renderHome() {
-            setHeader("The Library Edit", "Magazine Home", "หน้าเปิดแบบนิตยสารสำหรับเล่มเด่น เล่มที่กำลังอ่าน wishlist และภาพรวมประจำเดือน");
-            const volumes = allVolumes();
-            const featured = volumes.find(v => v.favorite) || volumes[0];
-            const reading = volumes.find(v => v.status === "reading");
-            const wish = volumes.find(v => v.status === "wishlist") || volumes.find(v => v.wishlistPriority);
-            const finishedThisMonth = volumes.filter(v => v.status === "finished" && String(v.purchaseDate || v.date).startsWith(todayISO().slice(0, 7))).length;
-            const spentThisMonth = volumes.filter(v => String(v.purchaseDate || v.date).startsWith(todayISO().slice(0, 7))).reduce((sum, v) => sum + v.price, 0);
+            setHeader(t("magazineEyebrow"), t("magazine"));
+            const books = archive.books;
+            if (!books.length) {
+                document.getElementById("appView").innerHTML = renderEmptyState();
+                return;
+            }
+
+            const featurePool = getHomeFeaturePool();
+            const featured = featurePool[homeFeatureIndex % featurePool.length] || books.find(book => book.favorite) || books.find(book => book.status === "reading") || books[0];
+            const reading = books.find(book => book.status === "reading");
+            const wishlist = books.find(book => book.status === "wishlist");
+            const thisMonth = books.filter(book => String(book.purchaseDate || book.createdAt).startsWith(todayISO().slice(0, 7)));
+            const coverImage = archive.settings.homeCoverImage || featured.coverImage || PLACEHOLDER_IMAGE;
+            const latestBooks = [...books].sort((a, b) => b.createdAt - a.createdAt).slice(0, 8);
 
             document.getElementById("appView").innerHTML = `
                 <section class="hero-grid">
                     <div class="feature-card">
-                        <img class="cover" src="${featured ? featured.image || PLACEHOLDER_IMAGE : PLACEHOLDER_IMAGE}" alt="">
-                        <div>
-                            <p class="eyebrow">Cover Story</p>
-                            <h3 class="feature-title">${featured ? escapeHtml(featured.name) : "Your Library"}</h3>
-                            <p class="subcopy">${featured ? escapeHtml(featured.review || `${featured.seriesTitle} / ${statusLabels[featured.status]}`) : "เพิ่มหนังสือเล่มแรกเพื่อเริ่ม archive ส่วนตัว"}</p>
-                            ${featured ? `<div class="kicker"><span class="pill accent">${statusLabels[featured.status]}</span><span class="pill">${stars(featured.rating)}</span></div>` : ""}
+                        <img class="cover" src="${coverImage}" alt="">
+                        <div class="feature-copy">
+                            <p class="eyebrow">${escapeHtml(t("coverStory"))}</p>
+                            <h3 class="feature-title">${escapeHtml(featured.title)}</h3>
+                            <p class="meta">${escapeHtml([featured.author, featured.publisher || collectionName(featured.collectionId)].filter(Boolean).join(" / "))}</p>
+                            <div class="pill-row">
+                                <span class="pill accent">${escapeHtml(statusText[currentLang][featured.status])}</span>
+                                <span class="pill">${stars(featured.rating)}</span>
+                            </div>
                         </div>
                     </div>
                     <div class="quick-stack">
-                        <div class="quick-card"><h3>Currently Reading</h3><p>${reading ? `${escapeHtml(reading.name)} / ${progress(reading)}%` : "ยังไม่มีเล่มที่กำลังอ่าน"}</p></div>
-                        <div class="quick-card"><h3>Wishlist Edit</h3><p>${wish ? `${escapeHtml(wish.name)} ${wish.wishlistPriority ? `/ Priority ${priorityLabels[wish.wishlistPriority]}` : ""}` : "ยังไม่มี wishlist"}</p></div>
-                        <div class="quick-card"><h3>This Month</h3><p>ซื้อ ${volumes.filter(v => String(v.purchaseDate || v.date).startsWith(todayISO().slice(0, 7))).length} เล่ม / ${money(spentThisMonth)} / อ่านจบ ${finishedThisMonth} เล่ม</p></div>
+                        <div class="quick-card"><h3>${escapeHtml(t("currentlyReading"))}</h3><p>${reading ? `${escapeHtml(reading.title)} / ${progress(reading)}%` : escapeHtml(t("noReading"))}</p></div>
+                        <div class="quick-card"><h3>${escapeHtml(t("wishlist"))}</h3><p>${wishlist ? `${escapeHtml(wishlist.title)}${wishlist.priority ? ` / ${escapeHtml(priorityText[currentLang][wishlist.priority])}` : ""}` : escapeHtml(t("noWishlist"))}</p></div>
+                        <div class="quick-card"><h3>${escapeHtml(t("thisMonth"))}</h3><p>${thisMonth.length} ${escapeHtml(t("books"))} / ${money(thisMonth.reduce((sum, book) => sum + book.price, 0))}</p></div>
                     </div>
                 </section>
-                <section class="grid">
-                    ${filteredVolumes(volumes).slice(0, 6).map(renderVolumeCard).join("") || `<p class="empty">ยังไม่มีหนังสือใน archive</p>`}
-                </section>
+                <p class="eyebrow">${escapeHtml(t("latestBooks"))}</p>
+                <section class="grid">${latestBooks.map(renderBookCard).join("")}</section>
             `;
         }
 
-        function renderArchive() {
-            setHeader("Complete Archive", "All Series", "คลังซีรีส์ทั้งหมด พร้อมเข้าไปดูเล่มย่อยและจัดการรายละเอียด");
-            const q = document.getElementById("searchInput").value.trim().toLowerCase();
-            const series = libraryData.filter(s => {
-                const haystack = [s.title, s.publisher, ...s.tags, ...s.volumes.flatMap(v => [v.name, v.store, v.review, ...v.tags])].join(" ").toLowerCase();
-                return !q || haystack.includes(q);
-            });
-            document.getElementById("appView").innerHTML = `<section class="grid">${series.map(renderSeriesCard).join("") || `<p class="empty">ไม่พบซีรีส์ที่ค้นหา</p>`}</section>`;
+        function renderEmptyState() {
+            return `
+                <div class="empty-state">
+                    <h3 style="margin-top:0;">${escapeHtml(t("startCollection"))}</h3>
+                    <p>${escapeHtml(t("startCollectionText"))}</p>
+                    <div class="pill-row">
+                        <button class="btn primary" onclick="openBookModal()">${escapeHtml(t("addBook"))}</button>
+                        <button class="btn" onclick="document.getElementById('importInput').click()">${escapeHtml(t("importData"))}</button>
+                    </div>
+                </div>
+            `;
         }
 
-        function renderSeriesCard(series) {
-            const avg = series.volumes.length ? Math.round(series.volumes.reduce((sum, v) => sum + progress(v), 0) / series.volumes.length) : 0;
+        function renderLibrary() {
+            setHeader(t("library"), t("collectionLibrary"));
+            const collections = filteredCollections();
+            const standaloneBooks = filters.collection ? [] : filteredBooks(archive.books.filter(book => !book.collectionId));
+            const cards = `${collections.map(renderCollectionCard).join("")}${standaloneBooks.map(renderBookCard).join("")}`;
+            document.getElementById("appView").innerHTML = `
+                ${renderLibraryControls()}
+                ${cards ? `<section class="grid">${cards}</section>` : `<p class="empty-state">${escapeHtml(t("noResults"))}</p>`}
+            `;
+        }
+
+        function renderWishlist() {
+            setHeader(t("wishlist"), t("wishlist"));
+            const books = filteredBooks(archive.books.filter(book => book.status === "wishlist"));
+            const priorityRank = { high: 0, medium: 1, low: 2, "": 3 };
+            books.sort((a, b) => priorityRank[a.priority || ""] - priorityRank[b.priority || ""]);
+            document.getElementById("appView").innerHTML = `
+                ${renderLibraryControls(false, t("wishlist"), true)}
+                ${books.length ? `<section class="grid">${books.map(renderBookCard).join("")}</section>` : `<p class="empty-state">${escapeHtml(t("noWishlist"))}</p>`}
+            `;
+        }
+
+        function renderLibraryControls(showCollection = true, fixedLabel = "", showAddButton = false) {
             return `
-                <article class="card">
-                    <div class="card-main" onclick="renderSeriesDetail('${series.id}')">
-                        <img class="cover wide" src="${seriesCover(series)}" alt="">
-                        <div class="kicker"><span class="pill">${series.volumes.length} เล่ม</span><span class="pill accent">${money(seriesTotal(series))}</span></div>
-                        <h3>${escapeHtml(series.title)}</h3>
-                        <p class="meta">สำนักพิมพ์: ${escapeHtml(series.publisher)}</p>
-                        <p class="meta">Progress เฉลี่ย ${avg}%</p>
-                        <div class="progress-track"><div class="progress-fill" style="width:${avg}%"></div></div>
-                        <div class="tags">${series.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>
+                <div class="toolbar ${showAddButton ? "with-action" : ""}">
+                    <input class="field" id="searchInput" type="search" placeholder="${escapeHtml(t("search"))}" value="${escapeHtml(getFilterValue("search"))}" oninput="setFilterValue('search', this.value)">
+                    ${showAddButton ? `<button class="btn primary" onclick="openBookModal('', defaultBookContext())">${escapeHtml(currentView === "wishlist" ? t("addWishlist") : t("addBook"))}</button>` : ""}
+                </div>
+                <div class="filters">
+                    <select class="field" id="statusFilter" onchange="setFilterValue('status', this.value)">
+                        <option value="">${escapeHtml(t("allStatus"))}</option>
+                        ${statusKeys.map(status => `<option value="${status}" ${getFilterValue("status") === status ? "selected" : ""}>${escapeHtml(statusText[currentLang][status])}</option>`).join("")}
+                    </select>
+                    <select class="field" id="typeFilter" onchange="setFilterValue('type', this.value)">
+                        <option value="">${escapeHtml(t("allTypes"))}</option>
+                        ${typeKeys.map(type => `<option value="${type}" ${getFilterValue("type") === type ? "selected" : ""}>${escapeHtml(typeText[currentLang][type])}</option>`).join("")}
+                    </select>
+                    ${showCollection ? `<select class="field" id="collectionFilter" onchange="setFilterValue('collection', this.value)">
+                        <option value="">${escapeHtml(t("allCollections"))}</option>
+                        ${archive.collections.map(collection => `<option value="${collection.id}" ${getFilterValue("collection") === collection.id ? "selected" : ""}>${escapeHtml(collection.name)}</option>`).join("")}
+                    </select>` : `<input class="field" disabled value="${escapeHtml(fixedLabel || t("collection"))}">`}
+                    <select class="field" id="sortFilter" onchange="setFilterValue('sort', this.value)">
+                        ${[
+                            ["latest", t("sortLatest")],
+                            ["title", t("sortTitle")],
+                            ["price", t("sortPrice")],
+                            ["rating", t("sortRating")],
+                            ["progress", t("sortProgress")]
+                        ].map(([value, label]) => `<option value="${value}" ${getFilterValue("sort") === value ? "selected" : ""}>${escapeHtml(label)}</option>`).join("")}
+                    </select>
+                </div>
+            `;
+        }
+
+        const filters = { search: "", status: "", type: "", collection: "", sort: "latest" };
+
+        function getFilterValue(key) {
+            return filters[key] || "";
+        }
+
+        function setFilterValue(key, value) {
+            const activeId = document.activeElement ? document.activeElement.id : "";
+            const start = typeof document.activeElement.selectionStart === "number" ? document.activeElement.selectionStart : null;
+            const end = typeof document.activeElement.selectionEnd === "number" ? document.activeElement.selectionEnd : null;
+            filters[key] = value;
+            renderCurrentView();
+            requestAnimationFrame(() => {
+                const next = activeId ? document.getElementById(activeId) : null;
+                if (!next) return;
+                next.focus();
+                if (start !== null && typeof next.setSelectionRange === "function") {
+                    next.setSelectionRange(start, end);
+                }
+            });
+        }
+
+        function setLibraryMode(mode) {
+            libraryMode = mode;
+            localStorage.setItem("archiveLibraryMode", mode);
+            renderCurrentView();
+        }
+
+        function defaultBookContext() {
+            if (currentView === "wishlist") return { status: "wishlist" };
+            if (currentView === "collection" && selectedCollectionId) return { collectionId: selectedCollectionId };
+            return {};
+        }
+
+        function collectionBooks(id) {
+            return archive.books.filter(book => book.collectionId === id);
+        }
+
+        function filteredCollections() {
+            const search = filters.search.trim().toLowerCase();
+            return archive.collections
+                .filter(collection => {
+                    if (filters.collection && filters.collection !== collection.id) return false;
+                    const books = collectionBooks(collection.id);
+                    const visibleBooks = filteredBooks(books);
+                    const ownText = [collection.name, collection.description, ...collection.tags].join(" ").toLowerCase();
+                    if (search && !ownText.includes(search) && !visibleBooks.length) return false;
+                    if ((filters.status || filters.type) && !visibleBooks.length) return false;
+                    return true;
+                })
+                .sort((a, b) => {
+                    const aBooks = collectionBooks(a.id);
+                    const bBooks = collectionBooks(b.id);
+                    if (filters.sort === "title") return a.name.localeCompare(b.name, currentLang);
+                    if (filters.sort === "price") return bBooks.reduce((sum, book) => sum + book.price, 0) - aBooks.reduce((sum, book) => sum + book.price, 0);
+                    if (filters.sort === "rating") return averageRating(bBooks) - averageRating(aBooks);
+                    if (filters.sort === "progress") return averageProgress(bBooks) - averageProgress(aBooks);
+                    return latestCreatedAt(bBooks, b.createdAt) - latestCreatedAt(aBooks, a.createdAt);
+                });
+        }
+
+        function latestCreatedAt(books, fallback) {
+            return books.reduce((latest, book) => Math.max(latest, Number(book.createdAt) || 0), Number(fallback) || 0);
+        }
+
+        function averageRating(books) {
+            return books.length ? books.reduce((sum, book) => sum + book.rating, 0) / books.length : 0;
+        }
+
+        function averageProgress(books) {
+            return books.length ? books.reduce((sum, book) => sum + progress(book), 0) / books.length : 0;
+        }
+
+        function filteredBooks(source = archive.books) {
+            const search = filters.search.trim().toLowerCase();
+            let books = source.filter(book => {
+                const haystack = [book.title, book.author, book.publisher, collectionName(book.collectionId), book.store, book.review, typeText[currentLang][book.type], statusText[currentLang][book.status], ...book.tags].join(" ").toLowerCase();
+                if (search && !haystack.includes(search)) return false;
+                if (filters.status && book.status !== filters.status) return false;
+                if (filters.type && book.type !== filters.type) return false;
+                if (filters.collection && book.collectionId !== filters.collection) return false;
+                return true;
+            });
+            books.sort((a, b) => {
+                if (filters.sort === "title") return a.title.localeCompare(b.title, currentLang);
+                if (filters.sort === "price") return b.price - a.price;
+                if (filters.sort === "rating") return b.rating - a.rating;
+                if (filters.sort === "progress") return progress(b) - progress(a);
+                return b.createdAt - a.createdAt;
+            });
+            return books;
+        }
+
+        function renderBookCard(book) {
+            return `
+                <article class="book-card">
+                    <div class="card-main" onclick="openBookDetail('${book.id}')">
+                        <img class="cover" src="${book.coverImage || PLACEHOLDER_IMAGE}" alt="">
+                        <div class="pill-row">
+                            <span class="pill accent">${escapeHtml(statusText[currentLang][book.status])}</span>
+                            ${book.favorite ? `<span class="pill">${escapeHtml(t("favorite"))}</span>` : ""}
+                        </div>
+                        <h3>${escapeHtml(book.title)}</h3>
+                        <p class="meta">${escapeHtml([book.author, book.publisher || collectionName(book.collectionId)].filter(Boolean).join(" / "))}</p>
+                        <p class="meta">${stars(book.rating)} / ${progress(book)}%</p>
+                        <div class="progress-track"><div class="progress-fill" style="width:${progress(book)}%"></div></div>
+                        <p class="price">${money(book.price)}</p>
+                        <div class="tags">${book.tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
                     </div>
-                    <div class="actions"><button class="btn" onclick="editSeries('${series.id}')">Edit</button><button class="btn" onclick="deleteSeries('${series.id}')">Delete</button></div>
+                    <div class="actions">
+                        <button class="btn" onclick="openBookModal('${book.id}')">${escapeHtml(t("edit"))}</button>
+                        <button class="btn danger" onclick="deleteBook('${book.id}')">${escapeHtml(t("delete"))}</button>
+                    </div>
                 </article>
             `;
         }
 
-        function renderSeriesDetail(seriesId) {
-            const series = libraryData.find(s => s.id === seriesId);
-            if (!series) return setView("archive");
-            currentView = "series";
-            selectedSeriesId = seriesId;
-            selectedVolumeId = "";
-            document.querySelectorAll("[data-view]").forEach(button => button.classList.remove("active"));
-            setHeader(series.publisher, series.title, "เล่มย่อยทั้งหมดในซีรีส์นี้");
-            document.getElementById("mainToolbar").style.display = "grid";
-            document.getElementById("appView").innerHTML = `<section class="grid">${filteredVolumes(series.volumes.map(v => ({ ...v, seriesId: series.id, seriesTitle: series.title, publisher: series.publisher }))).map(renderVolumeCard).join("") || `<p class="empty">ยังไม่มีเล่มในซีรีส์นี้</p>`}</section>`;
-        }
-
-        function renderShelf() {
-            setHeader("Visual Shelf", "Cover Gallery", "มุมมองชั้นหนังสือที่ให้ปกเป็นพระเอก");
-            document.getElementById("appView").innerHTML = `<section class="grid shelf-grid">${filteredVolumes().map(renderShelfCard).join("") || `<p class="empty">ไม่พบหนังสือ</p>`}</section>`;
-        }
-
-        function renderWishlist() {
-            setHeader("Shopping Edit", "Wishlist", "รายการอยากซื้อพร้อม priority ราคาเป้าหมาย และลิงก์ร้านค้า");
-            const list = filteredVolumes(allVolumes().filter(v => v.status === "wishlist" || v.wishlistPriority));
-            const rank = { high: 0, medium: 1, low: 2, "": 3 };
-            list.sort((a, b) => rank[a.wishlistPriority || ""] - rank[b.wishlistPriority || ""]);
-            document.getElementById("appView").innerHTML = `<section class="grid">${list.map(renderVolumeCard).join("") || `<p class="empty">ยังไม่มี wishlist</p>`}</section>`;
-        }
-
-        function renderDashboard() {
-            setHeader("Reading Intelligence", "Dashboard", "สถิติแบบ editorial สำหรับการซื้อ การอ่าน ร้าน และแท็กที่เด่นที่สุด");
-            const volumes = allVolumes();
-            const byTag = countBy(volumes.flatMap(v => v.tags));
-            const byStore = countBy(volumes.map(v => v.store).filter(Boolean));
-            const topSpend = [...volumes].sort((a, b) => b.price - a.price).slice(0, 5);
-            const month = todayISO().slice(0, 7);
-            const thisMonth = volumes.filter(v => String(v.purchaseDate || v.date).startsWith(month));
-            document.getElementById("appView").innerHTML = `
-                <section class="grid">
-                    <div class="panel"><h3>ซื้อเดือนนี้</h3><p class="metric-title">${thisMonth.length}</p><p>${money(thisMonth.reduce((s, v) => s + v.price, 0))}</p></div>
-                    <div class="panel"><h3>อ่านจบทั้งหมด</h3><p class="metric-title">${volumes.filter(v => v.status === "finished").length}</p></div>
-                    <div class="panel"><h3>Favorite</h3><p class="metric-title">${volumes.filter(v => v.favorite).length}</p></div>
-                    <div class="panel"><h3>แท็กที่อ่านเยอะสุด</h3><p>${renderCounts(byTag)}</p></div>
-                    <div class="panel"><h3>ร้านที่ซื้อบ่อยสุด</h3><p>${renderCounts(byStore)}</p></div>
-                    <div class="panel"><h3>Top 5 หนังสือแพงสุด</h3><p>${topSpend.map(v => `${escapeHtml(v.name)} / ${money(v.price)}`).join("<br>") || "-"}</p></div>
-                </section>
+        function renderShelfCard(book) {
+            return `
+                <article class="book-card">
+                    <div class="card-main" onclick="openBookDetail('${book.id}')">
+                        <img class="cover" src="${book.coverImage || PLACEHOLDER_IMAGE}" alt="">
+                        <h3>${escapeHtml(book.title)}</h3>
+                        <p class="meta">${escapeHtml(collectionName(book.collectionId))}</p>
+                    </div>
+                </article>
             `;
         }
 
         function renderCollections() {
-            setHeader("Curated Moodboards", "Collections", "จัดหนังสือเป็น moodboard ส่วนตัว เช่น Cozy reads, Dark academia, อ่านซ้ำได้");
-            const groups = {};
-            allVolumes().forEach(v => {
-                const key = v.collection || "Unfiled";
-                groups[key] = groups[key] || [];
-                groups[key].push(v);
-            });
-            document.getElementById("appView").innerHTML = Object.keys(groups).map(name => `
-                <section style="margin-bottom:34px;">
-                    <div class="view-head"><div><p class="eyebrow">Moodboard</p><h3 class="title" style="font-size:3rem;">${escapeHtml(name)}</h3></div></div>
-                    <div class="grid shelf-grid">${groups[name].map(renderShelfCard).join("")}</div>
+            setHeader(t("collections"), t("collections"));
+            const unfiledCount = archive.books.filter(book => !book.collectionId).length;
+            const cards = archive.collections.map(collection => renderCollectionCard(collection)).join("");
+            document.getElementById("appView").innerHTML = `
+                <section class="grid">
+                    ${cards || ""}
+                    <article class="collection-card">
+                        <h3>${escapeHtml(t("standalone"))}</h3>
+                        <p class="meta">${unfiledCount} ${escapeHtml(t("books"))}</p>
+                    </article>
                 </section>
-            `).join("") || `<p class="empty">ยังไม่มี collection</p>`;
+            `;
         }
 
-        function renderShelfCard(volume) {
+        function renderCollectionCard(collection) {
+            const books = collectionBooks(collection.id);
+            const count = books.length;
+            const publisher = mostCommon(books.map(book => book.publisher).filter(Boolean));
             return `
-                <article class="card">
-                    <div class="card-main" onclick="renderBookDetail('${volume.seriesId}', '${volume.id}')">
-                        <img class="cover" src="${volume.image || PLACEHOLDER_IMAGE}" alt="">
-                        <h3>${escapeHtml(volume.name)}</h3>
-                        <p class="meta">${escapeHtml(volume.seriesTitle)}</p>
+                <article class="collection-card">
+                    <div class="card-main" onclick="openCollectionDetail('${collection.id}')">
+                        <img class="cover wide" src="${collection.coverImage || firstCollectionCover(collection.id) || PLACEHOLDER_IMAGE}" alt="">
+                        <h3>${escapeHtml(collection.name)}</h3>
+                        <p class="meta">${count} ${escapeHtml(t("books"))}</p>
+                        ${publisher ? `<p class="meta">${escapeHtml(t("publisher"))}: ${escapeHtml(publisher)}</p>` : ""}
+                        ${collection.description ? `<p class="meta">${escapeHtml(collection.description)}</p>` : ""}
+                        <div class="tags">${collection.tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn" onclick="openCollectionModal('${collection.id}')">${escapeHtml(t("edit"))}</button>
+                        <button class="btn danger" onclick="deleteCollection('${collection.id}')">${escapeHtml(t("delete"))}</button>
                     </div>
                 </article>
             `;
         }
 
-        function renderVolumeCard(volume) {
-            const pct = progress(volume);
-            return `
-                <article class="card">
-                    <div class="card-main" onclick="renderBookDetail('${volume.seriesId}', '${volume.id}')">
-                        <img class="cover" src="${volume.image || PLACEHOLDER_IMAGE}" alt="">
-                        <div class="kicker">
-                            <span class="pill accent">${statusLabels[volume.status]}</span>
-                            ${volume.favorite ? `<span class="pill">Favorite</span>` : ""}
-                            ${volume.wishlistPriority ? `<span class="pill">Priority ${priorityLabels[volume.wishlistPriority]}</span>` : ""}
-                        </div>
-                        <h3>${escapeHtml(volume.name)}</h3>
-                        <p class="meta">${escapeHtml(volume.seriesTitle)} / ${escapeHtml(volume.store || "-")}</p>
-                        <p class="meta">${stars(volume.rating)} / ${pct}%</p>
-                        <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
-                        <p class="price">${money(volume.price)}${volume.targetPrice ? ` / target ${money(volume.targetPrice)}` : ""}</p>
-                        <div class="tags">${volume.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>
+        function openCollectionDetail(id) {
+            selectedCollectionId = id;
+            selectedBookId = "";
+            currentView = "collection";
+            renderCurrentView();
+        }
+
+        function renderCollectionDetail(id) {
+            const collection = getCollection(id);
+            if (!collection) return setView("library");
+            const books = filteredBooks(collectionBooks(id));
+            const publisher = mostCommon(collectionBooks(id).map(book => book.publisher).filter(Boolean));
+            setHeader(t("booksInCollection"), collection.name);
+            document.getElementById("appView").innerHTML = `
+                <div class="toolbar">
+                    <button class="btn" onclick="setView('library')">${escapeHtml(t("back"))}</button>
+                    <div class="view-toggle">
+                        <button class="btn" onclick="openCollectionModal('${collection.id}')">${escapeHtml(t("edit"))}</button>
+                        <button class="btn primary" onclick="openBookModal('', { collectionId: '${collection.id}' })">${escapeHtml(t("addBook"))}</button>
                     </div>
-                    <div class="actions"><button class="btn" onclick="editVolume('${volume.seriesId}', '${volume.id}')">Edit</button><button class="btn" onclick="deleteVolume('${volume.seriesId}', '${volume.id}')">Delete</button></div>
-                </article>
+                </div>
+                <section class="detail collection-detail" style="margin-bottom:24px;">
+                    <img class="cover" src="${collection.coverImage || firstCollectionCover(collection.id) || PLACEHOLDER_IMAGE}" alt="">
+                    <div>
+                        <p class="eyebrow">${escapeHtml(t("collection"))}</p>
+                        <h3 class="detail-title">${escapeHtml(collection.name)}</h3>
+                        <p class="meta">${collectionBooks(id).length} ${escapeHtml(t("books"))}${publisher ? ` / ${escapeHtml(t("publisher"))}: ${escapeHtml(publisher)}` : ""}</p>
+                        ${collection.description ? `<p class="review-box" style="margin-top:14px;">${escapeHtml(collection.description)}</p>` : ""}
+                        <div class="tags" style="margin-top:12px;">${collection.tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+                    </div>
+                </section>
+                ${renderLibraryControls(false, collection.name)}
+                ${books.length ? `<section class="grid">${books.map(renderBookCard).join("")}</section>` : `<p class="empty-state">${escapeHtml(t("noCollectionBooks"))}</p>`}
             `;
         }
 
-        function renderBookDetail(seriesId, volumeId) {
-            const series = libraryData.find(s => s.id === seriesId);
-            const volume = series && series.volumes.find(v => v.id === volumeId);
-            if (!series || !volume) return;
+        function mostCommon(values) {
+            const counts = countBy(values);
+            return Object.entries(counts).sort((a, b) => b[1] - a[1])[0]?.[0] || "";
+        }
+
+        function firstCollectionCover(id) {
+            const book = archive.books.find(item => item.collectionId === id && item.coverImage);
+            return book ? book.coverImage : "";
+        }
+
+        function openBookDetail(id) {
+            selectedBookId = id;
             currentView = "book";
-            selectedSeriesId = seriesId;
-            selectedVolumeId = volumeId;
-            document.querySelectorAll("[data-view]").forEach(button => button.classList.remove("active"));
-            document.getElementById("mainToolbar").style.display = "none";
-            setHeader("Feature Story", volume.name, "หน้ารายละเอียดเล่มแบบ magazine feature พร้อม review และข้อมูลซื้อ");
-            const v = { ...volume, seriesId, seriesTitle: series.title, publisher: series.publisher };
+            renderCurrentView();
+        }
+
+        function renderBookDetail(id) {
+            const book = archive.books.find(item => item.id === id);
+            if (!book) return setView("library");
+            setHeader(t("library"), book.title);
             document.getElementById("appView").innerHTML = `
                 <section class="detail">
-                    <img class="cover" src="${volume.image || PLACEHOLDER_IMAGE}" alt="">
+                    <img class="cover" src="${book.coverImage || PLACEHOLDER_IMAGE}" alt="">
                     <div>
-                        <p class="eyebrow">${escapeHtml(series.title)}</p>
-                        <h3 class="detail-title">${escapeHtml(volume.name)}</h3>
-                        <div class="kicker">
-                            <span class="pill accent">${statusLabels[volume.status]}</span>
-                            ${volume.favorite ? `<span class="pill">Favorite</span>` : ""}
-                            ${volume.collection ? `<span class="pill">${escapeHtml(volume.collection)}</span>` : ""}
+                        <p class="eyebrow">${escapeHtml(collectionName(book.collectionId))}</p>
+                        <h3 class="detail-title">${escapeHtml(book.title)}</h3>
+                        <div class="pill-row">
+                            <span class="pill accent">${escapeHtml(statusText[currentLang][book.status])}</span>
+                            <span class="pill">${escapeHtml(typeText[currentLang][book.type] || typeText[currentLang].other)}</span>
+                            ${book.favorite ? `<span class="pill">${escapeHtml(t("favorite"))}</span>` : ""}
                         </div>
-                        <p class="meta">สำนักพิมพ์: ${escapeHtml(series.publisher)}</p>
-                        <p class="meta">วันที่ซื้อ: ${escapeHtml(volume.purchaseDate || "-")} / ร้าน: ${escapeHtml(volume.store || "-")}</p>
-                        <p class="meta">ราคา: ${money(volume.price)} ${volume.targetPrice ? `/ ราคาเป้าหมาย ${money(volume.targetPrice)}` : ""}</p>
-                        <p class="meta">Progress: ${progress(volume)}% (${volume.pagesRead || 0}/${volume.totalPages || 0} หน้า)</p>
-                        <p class="meta">Rating: ${stars(volume.rating)}</p>
-                        <div class="progress-track"><div class="progress-fill" style="width:${progress(volume)}%"></div></div>
-                        <div class="tags">${volume.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>
-                        ${volume.shopLink ? `<p><a class="btn" href="${escapeHtml(volume.shopLink)}" target="_blank" rel="noreferrer">Open Shop Link</a></p>` : ""}
-                        <div class="review-box">${escapeHtml(volume.review || "ยังไม่มี review ส่วนตัว")}</div>
-                        <div class="actions" style="max-width:360px;"><button class="btn" onclick="editVolume('${seriesId}', '${volumeId}')">Edit</button><button class="btn" onclick="renderSeriesDetail('${seriesId}')">Back</button></div>
+                        <p class="meta">${escapeHtml(book.author || "-")}</p>
+                        <p class="meta">${escapeHtml(t("publisher"))}: ${escapeHtml(book.publisher || "-")}</p>
+                        <p class="meta">${escapeHtml(t("store"))}: ${escapeHtml(book.store || "-")} / ${escapeHtml(t("purchaseDate"))}: ${escapeHtml(book.purchaseDate || "-")}</p>
+                        <p class="meta">${escapeHtml(t("price"))}: ${money(book.price)} ${book.targetPrice ? `/ ${escapeHtml(t("targetPrice"))}: ${money(book.targetPrice)}` : ""}</p>
+                        <p class="meta">${escapeHtml(t("pagesRead"))}: ${book.pagesRead || 0}/${book.totalPages || 0} / ${progress(book)}%</p>
+                        <p class="meta">${stars(book.rating)}</p>
+                        <div class="progress-track"><div class="progress-fill" style="width:${progress(book)}%"></div></div>
+                        <div class="tags" style="margin-top:12px;">${book.tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}</div>
+                        <div class="review-box" style="margin-top:18px;">${escapeHtml(book.review || t("emptyReview"))}</div>
+                        ${book.shopLink ? `<p style="margin-top:14px;"><a class="btn" href="${escapeHtml(book.shopLink)}" target="_blank" rel="noreferrer">${escapeHtml(t("shopLink"))}</a></p>` : ""}
+                        <div class="actions" style="max-width:360px;">
+                            <button class="btn" onclick="openBookModal('${book.id}')">${escapeHtml(t("edit"))}</button>
+                            <button class="btn" onclick="${book.collectionId ? `openCollectionDetail('${book.collectionId}')` : "setView('library')"}">${escapeHtml(t("back"))}</button>
+                        </div>
                     </div>
+                </section>
+            `;
+        }
+
+        function renderInsights() {
+            setHeader(t("insights"), t("insights"));
+            const books = archive.books;
+            const month = todayISO().slice(0, 7);
+            const monthBooks = books.filter(book => String(book.purchaseDate || "").startsWith(month));
+            const byType = countBy(books.map(book => typeText[currentLang][book.type] || typeText[currentLang].other));
+            const byStore = countBy(books.map(book => book.store).filter(Boolean));
+            document.getElementById("appView").innerHTML = `
+                <section class="grid">
+                    <div class="panel"><h3>${escapeHtml(t("booksThisMonth"))}</h3><p class="total-spent" style="text-align:left;">${monthBooks.length}</p><p>${money(monthBooks.reduce((sum, book) => sum + book.price, 0))}</p></div>
+                    <div class="panel"><h3>${escapeHtml(t("finishedBooks"))}</h3><p class="total-spent" style="text-align:left;">${books.filter(book => book.status === "finished").length}</p></div>
+                    <div class="panel"><h3>${escapeHtml(t("averageProgress"))}</h3><p class="total-spent" style="text-align:left;">${books.length ? Math.round(books.reduce((sum, book) => sum + progress(book), 0) / books.length) : 0}%</p></div>
+                    <div class="panel"><h3>${escapeHtml(t("bookTypes"))}</h3><p>${renderCounts(byType)}</p></div>
+                    <div class="panel"><h3>${escapeHtml(t("topStores"))}</h3><p>${renderCounts(byStore)}</p></div>
+                    <div class="panel"><h3>${escapeHtml(t("totalSpent"))}</h3><p class="total-spent" style="text-align:left;">${money(books.reduce((sum, book) => sum + book.price, 0))}</p></div>
                 </section>
             `;
         }
@@ -1272,231 +1966,231 @@
         }
 
         function renderCounts(obj) {
-            return Object.entries(obj).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([k, v]) => `${escapeHtml(k)} (${v})`).join("<br>") || "-";
+            return Object.entries(obj).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([key, count]) => `${escapeHtml(key)} (${count})`).join("<br>") || "-";
         }
 
-        function updateStats() {
-            const volumes = allVolumes();
-            const total = volumes.reduce((sum, v) => sum + v.price, 0);
-            const avgProgress = volumes.length ? Math.round(volumes.reduce((sum, v) => sum + progress(v), 0) / volumes.length) : 0;
-            document.getElementById("totalPrice").innerText = money(total);
-            document.getElementById("issueSeries").innerText = libraryData.length;
-            document.getElementById("issueVolumes").innerText = volumes.length;
-            document.getElementById("issueProgress").innerText = `${avgProgress}%`;
-            document.getElementById("statsGrid").innerHTML = `
-                <div class="stat"><span>Series</span><strong>${libraryData.length}</strong></div>
-                <div class="stat"><span>Volumes</span><strong>${volumes.length}</strong></div>
-                <div class="stat"><span>Wishlist</span><strong>${volumes.filter(v => v.status === "wishlist").length}</strong></div>
-                <div class="stat"><span>Finished</span><strong>${volumes.filter(v => v.status === "finished").length}</strong></div>
-                <div class="stat"><span>Progress</span><strong>${avgProgress}%</strong></div>
-                <div class="stat"><span>Total</span><strong>${money(total)}</strong></div>
+        function openBookModal(id = "", defaults = {}) {
+            const book = archive.books.find(item => item.id === id);
+            modalDefaults = defaults || {};
+            editingImage = book ? book.coverImage : "";
+            document.getElementById("modalTitle").innerText = book ? t("edit") : t("addBook");
+            document.getElementById("modalBody").innerHTML = bookForm(book);
+            document.getElementById("entryModal").classList.add("open");
+        }
+
+        function bookForm(book) {
+            const rawValue = (key, fallback = "") => book ? book[key] ?? fallback : modalDefaults[key] ?? fallback;
+            const value = (key, fallback = "") => escapeHtml(rawValue(key, fallback));
+            const selectedValue = (key, fallback = "") => rawValue(key, fallback);
+            return `
+                <div class="form-grid">
+                    <input class="field full" id="bookTitle" placeholder="${escapeHtml(t("title"))}" value="${value("title")}">
+                    <input class="field" id="bookAuthor" placeholder="${escapeHtml(t("author"))}" value="${value("author")}">
+                    <input class="field" id="bookPublisher" placeholder="${escapeHtml(t("publisher"))}" value="${value("publisher")}">
+                    <select class="field" id="bookCollection">
+                        <option value="">${escapeHtml(t("noCollection"))}</option>
+                        ${archive.collections.map(collection => `<option value="${collection.id}" ${selectedValue("collectionId") === collection.id ? "selected" : ""}>${escapeHtml(collection.name)}</option>`).join("")}
+                    </select>
+                    <input class="field" id="bookNewCollection" placeholder="${escapeHtml(t("newCollection"))}">
+                    <select class="field" id="bookType">${typeKeys.map(type => `<option value="${type}" ${selectedValue("type", "other") === type ? "selected" : ""}>${escapeHtml(typeText[currentLang][type])}</option>`).join("")}</select>
+                    <select class="field" id="bookStatus">${statusKeys.map(status => `<option value="${status}" ${selectedValue("status", "unread") === status ? "selected" : ""}>${escapeHtml(statusText[currentLang][status])}</option>`).join("")}</select>
+                    <input class="field" id="bookPrice" type="number" min="0" placeholder="${escapeHtml(t("price"))}" value="${value("price")}">
+                    <input class="field full" id="bookTags" placeholder="${escapeHtml(t("tags"))}" value="${book ? escapeHtml(book.tags.join(", ")) : ""}">
+                    <textarea class="field full" id="bookReview" placeholder="${escapeHtml(t("review"))}">${book ? escapeHtml(book.review) : ""}</textarea>
+                    <label class="field full">${escapeHtml(t("cover"))}<input style="display:block; margin-top:8px;" type="file" accept="image/*" onchange="setEditingImage(this)"></label>
+                    <p class="helper full">${escapeHtml(t("imageWarning"))}</p>
+                </div>
+                <div class="form-actions">
+                    <button class="btn primary" onclick="saveBook('${book ? book.id : ""}')">${escapeHtml(t("save"))}</button>
+                    <button class="btn" onclick="closeModal()">${escapeHtml(t("cancel"))}</button>
+                </div>
             `;
-            const tags = [...new Set(volumes.flatMap(v => v.tags).concat(libraryData.flatMap(s => s.tags)))];
-            document.getElementById("tagSummary").innerHTML = tags.length ? tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join(" ") : "ยังไม่มีแท็ก";
         }
 
-        function resetFilters() {
-            ["filterStatus", "filterTag", "filterStore", "filterRating", "filterFavorite", "filterMinPrice", "filterMaxPrice", "filterMonth"].forEach(id => document.getElementById(id).value = "");
-            renderCurrentView();
-        }
-
-        function openSeriesModal() { modalMode = "series"; editingSeriesId = ""; editingVolumeId = ""; setupModal(); clearForm(); openModal(); }
-        function openVolumeModal() { modalMode = "volume"; editingSeriesId = ""; editingVolumeId = ""; setupModal(); clearForm(); fillSeriesSelect(selectedSeriesId); openModal(); }
-        function openModal() { document.getElementById("entryModal").style.display = "flex"; document.getElementById("inputName").focus(); }
-        function closeModal() { document.getElementById("entryModal").style.display = "none"; globalImageData = ""; }
-        function handleModalBackdrop(event) { if (event.target.id === "entryModal") closeModal(); }
-
-        function setupModal() {
-            const isVolume = modalMode === "volume" || modalMode === "edit-volume";
-            document.getElementById("modalTitle").innerText = isVolume ? (modalMode === "edit-volume" ? "Edit Volume" : "Add Volume") : (modalMode === "edit-series" ? "Edit Series" : "Add Series");
-            document.querySelectorAll(".volume-field").forEach(el => el.style.display = isVolume ? "" : "none");
-            document.querySelectorAll(".series-field").forEach(el => el.style.display = isVolume ? "none" : "");
-        }
-
-        function clearForm() {
-            ["inputName", "inputPublisher", "inputTags", "inputCollection", "inputPrice", "inputPriority", "inputTargetPrice", "inputShopLink", "inputPurchaseDate", "inputStore", "inputPagesRead", "inputTotalPages", "inputReview"].forEach(id => document.getElementById(id).value = "");
-            document.getElementById("inputStatus").value = "owned";
-            document.getElementById("inputRating").value = "0";
-            document.getElementById("inputFavorite").value = "false";
-            document.getElementById("fileInput").value = "";
-            document.getElementById("imagePreview").src = "";
-            document.getElementById("imagePreview").style.display = "none";
-            document.getElementById("dropzoneContent").style.display = "block";
-            globalImageData = "";
-        }
-
-        function fillSeriesSelect(selected = "") {
-            const select = document.getElementById("inputSeries");
-            select.innerHTML = libraryData.map(series => `<option value="${series.id}">${escapeHtml(series.title)}</option>`).join("");
-            if (selected) select.value = selected;
-        }
-
-        function previewImage(input) {
+        async function setEditingImage(input) {
             const file = input.files[0];
             if (!file) return;
-            const reader = new FileReader();
-            reader.onload = event => {
-                globalImageData = event.target.result;
-                document.getElementById("imagePreview").src = globalImageData;
-                document.getElementById("imagePreview").style.display = "block";
-                document.getElementById("dropzoneContent").style.display = "none";
-            };
-            reader.readAsDataURL(file);
+            editingImage = await compressImage(file);
         }
 
-        function saveEntry() {
-            const name = document.getElementById("inputName").value.trim();
-            if (!name) return alert("กรุณากรอกชื่อก่อนครับ");
-            const tags = normalizeTags(document.getElementById("inputTags").value);
-
-            if (modalMode === "series" || modalMode === "edit-series") {
-                const data = {
-                    title: name,
-                    publisher: document.getElementById("inputPublisher").value.trim() || "-",
-                    tags
-                };
-                if (modalMode === "series") {
-                    libraryData.push({ id: `series_${Date.now()}`, createdAt: Date.now(), coverImage: globalImageData, volumes: [], ...data });
-                } else {
-                    const series = libraryData.find(s => s.id === editingSeriesId);
-                    if (!series) return;
-                    Object.assign(series, data);
-                    if (globalImageData) series.coverImage = globalImageData;
-                }
-            } else {
-                const series = libraryData.find(s => s.id === document.getElementById("inputSeries").value);
-                if (!series) return alert("กรุณาสร้างซีรีส์ก่อนเพิ่มเล่มครับ");
-                const price = Number(document.getElementById("inputPrice").value || 0);
-                const pagesRead = Number(document.getElementById("inputPagesRead").value || 0);
-                const totalPages = Number(document.getElementById("inputTotalPages").value || 0);
-                if (totalPages && pagesRead > totalPages) return alert("จำนวนหน้าที่อ่านต้องไม่เกินจำนวนหน้าทั้งหมดครับ");
-                const data = {
-                    name,
-                    price,
-                    purchaseDate: document.getElementById("inputPurchaseDate").value,
-                    store: document.getElementById("inputStore").value.trim(),
-                    pagesRead,
-                    totalPages,
-                    status: document.getElementById("inputStatus").value,
-                    rating: Number(document.getElementById("inputRating").value),
-                    favorite: document.getElementById("inputFavorite").value === "true",
-                    review: document.getElementById("inputReview").value.trim(),
-                    tags,
-                    collection: document.getElementById("inputCollection").value.trim(),
-                    wishlistPriority: document.getElementById("inputPriority").value,
-                    targetPrice: Number(document.getElementById("inputTargetPrice").value || 0),
-                    shopLink: document.getElementById("inputShopLink").value.trim()
-                };
-                if (modalMode === "volume") {
-                    series.volumes.push({ id: `volume_${Date.now()}`, date: todayISO(), image: globalImageData, ...data });
-                } else {
-                    const oldSeries = libraryData.find(s => s.volumes.some(v => v.id === editingVolumeId));
-                    const volume = oldSeries && oldSeries.volumes.find(v => v.id === editingVolumeId);
-                    if (!volume) return;
-                    const image = globalImageData || volume.image;
-                    if (oldSeries.id !== series.id) {
-                        oldSeries.volumes = oldSeries.volumes.filter(v => v.id !== editingVolumeId);
-                        series.volumes.push({ ...volume, ...data, image });
-                    } else {
-                        Object.assign(volume, data, { image });
-                    }
-                    selectedSeriesId = series.id;
-                    selectedVolumeId = editingVolumeId;
-                }
+        function saveBook(id = "") {
+            const title = document.getElementById("bookTitle").value.trim();
+            if (!title) return alert(t("title"));
+            const existingBook = id ? archive.books.find(item => item.id === id) : null;
+            let collectionId = document.getElementById("bookCollection").value;
+            const newCollection = document.getElementById("bookNewCollection").value.trim();
+            if (newCollection) {
+                collectionId = `collection_${Date.now()}`;
+                archive.collections.push({ id: collectionId, name: newCollection, description: "", tags: [], coverImage: "", createdAt: Date.now() });
             }
-            saveLibrary();
+            const data = {
+                title,
+                author: document.getElementById("bookAuthor").value.trim(),
+                publisher: document.getElementById("bookPublisher").value.trim(),
+                collectionId,
+                type: document.getElementById("bookType").value,
+                status: document.getElementById("bookStatus").value,
+                price: Number(document.getElementById("bookPrice").value || 0),
+                targetPrice: existingBook ? existingBook.targetPrice : 0,
+                purchaseDate: existingBook ? existingBook.purchaseDate : "",
+                store: existingBook ? existingBook.store : "",
+                pagesRead: existingBook ? existingBook.pagesRead : 0,
+                totalPages: existingBook ? existingBook.totalPages : 0,
+                rating: existingBook ? existingBook.rating : 0,
+                favorite: existingBook ? existingBook.favorite : false,
+                priority: existingBook ? existingBook.priority : "",
+                shopLink: existingBook ? existingBook.shopLink : "",
+                tags: normalizeTags(document.getElementById("bookTags").value),
+                review: document.getElementById("bookReview").value.trim(),
+                coverImage: editingImage
+            };
+            if (id) {
+                if (!existingBook) return;
+                Object.assign(existingBook, data);
+            } else {
+                archive.books.push({ id: `book_${Date.now()}`, createdAt: Date.now(), ...data });
+            }
+            saveArchive();
             closeModal();
             renderCurrentView();
         }
 
-        function editSeries(seriesId) {
-            const series = libraryData.find(s => s.id === seriesId);
-            if (!series) return;
-            modalMode = "edit-series";
-            editingSeriesId = seriesId;
-            setupModal();
-            clearForm();
-            document.getElementById("inputName").value = series.title;
-            document.getElementById("inputPublisher").value = series.publisher;
-            document.getElementById("inputTags").value = series.tags.join(", ");
-            if (series.coverImage) showImage(series.coverImage);
-            openModal();
+        function openCollectionModal(id = "") {
+            const collection = archive.collections.find(item => item.id === id);
+            editingImage = collection ? collection.coverImage : "";
+            document.getElementById("modalTitle").innerText = collection ? t("edit") : t("addCollection");
+            document.getElementById("modalBody").innerHTML = `
+                <div class="form-grid">
+                    <input class="field full" id="collectionName" placeholder="${escapeHtml(t("collection"))}" value="${collection ? escapeHtml(collection.name) : ""}">
+                    <textarea class="field full" id="collectionDescription" placeholder="${escapeHtml(t("review"))}">${collection ? escapeHtml(collection.description) : ""}</textarea>
+                    <input class="field full" id="collectionTags" placeholder="${escapeHtml(t("tags"))}" value="${collection ? escapeHtml(collection.tags.join(", ")) : ""}">
+                    <label class="field full">${escapeHtml(t("cover"))}<input style="display:block; margin-top:8px;" type="file" accept="image/*" onchange="setEditingImage(this)"></label>
+                </div>
+                <div class="form-actions">
+                    <button class="btn primary" onclick="saveCollection('${collection ? collection.id : ""}')">${escapeHtml(t("save"))}</button>
+                    <button class="btn" onclick="closeModal()">${escapeHtml(t("cancel"))}</button>
+                </div>
+            `;
+            document.getElementById("entryModal").classList.add("open");
         }
 
-        function editVolume(seriesId, volumeId) {
-            const series = libraryData.find(s => s.id === seriesId);
-            const volume = series && series.volumes.find(v => v.id === volumeId);
-            if (!series || !volume) return;
-            modalMode = "edit-volume";
-            editingVolumeId = volumeId;
-            setupModal();
-            clearForm();
-            fillSeriesSelect(seriesId);
-            document.getElementById("inputName").value = volume.name;
-            document.getElementById("inputTags").value = volume.tags.join(", ");
-            document.getElementById("inputCollection").value = volume.collection || "";
-            document.getElementById("inputPrice").value = volume.price || "";
-            document.getElementById("inputStatus").value = volume.status || "owned";
-            document.getElementById("inputPriority").value = volume.wishlistPriority || "";
-            document.getElementById("inputTargetPrice").value = volume.targetPrice || "";
-            document.getElementById("inputShopLink").value = volume.shopLink || "";
-            document.getElementById("inputPurchaseDate").value = volume.purchaseDate || "";
-            document.getElementById("inputStore").value = volume.store || "";
-            document.getElementById("inputPagesRead").value = volume.pagesRead || "";
-            document.getElementById("inputTotalPages").value = volume.totalPages || "";
-            document.getElementById("inputRating").value = volume.rating || "0";
-            document.getElementById("inputFavorite").value = String(Boolean(volume.favorite));
-            document.getElementById("inputReview").value = volume.review || "";
-            if (volume.image) showImage(volume.image);
-            openModal();
-        }
-
-        function showImage(src) {
-            document.getElementById("imagePreview").src = src;
-            document.getElementById("imagePreview").style.display = "block";
-            document.getElementById("dropzoneContent").style.display = "none";
-        }
-
-        function deleteSeries(seriesId) {
-            const series = libraryData.find(s => s.id === seriesId);
-            if (!series || !confirm(`ลบซีรีส์ "${series.title}" และทุกเล่มใช่ไหมครับ?`)) return;
-            libraryData = libraryData.filter(s => s.id !== seriesId);
-            saveLibrary();
-            setView("archive");
-        }
-
-        function deleteVolume(seriesId, volumeId) {
-            const series = libraryData.find(s => s.id === seriesId);
-            const volume = series && series.volumes.find(v => v.id === volumeId);
-            if (!series || !volume || !confirm(`ลบเล่ม "${volume.name}" ใช่ไหมครับ?`)) return;
-            series.volumes = series.volumes.filter(v => v.id !== volumeId);
-            saveLibrary();
-            if (currentView === "book") {
-                setView("archive");
-                return;
+        function saveCollection(id = "") {
+            const name = document.getElementById("collectionName").value.trim();
+            if (!name) return alert(t("collection"));
+            const data = {
+                name,
+                description: document.getElementById("collectionDescription").value.trim(),
+                tags: normalizeTags(document.getElementById("collectionTags").value),
+                coverImage: editingImage
+            };
+            if (id) {
+                const collection = archive.collections.find(item => item.id === id);
+                if (!collection) return;
+                Object.assign(collection, data);
+            } else {
+                archive.collections.push({ id: `collection_${Date.now()}`, createdAt: Date.now(), ...data });
             }
+            saveArchive();
+            closeModal();
             renderCurrentView();
+        }
+
+        function deleteBook(id) {
+            if (!confirm(t("confirmDeleteBook"))) return;
+            archive.books = archive.books.filter(book => book.id !== id);
+            saveArchive();
+            if (currentView === "book") currentView = "library";
+            renderCurrentView();
+        }
+
+        function deleteCollection(id) {
+            if (!confirm(t("confirmDeleteCollection"))) return;
+            archive.collections = archive.collections.filter(collection => collection.id !== id);
+            archive.books.forEach(book => {
+                if (book.collectionId === id) book.collectionId = "";
+            });
+            saveArchive();
+            renderCurrentView();
+        }
+
+        function closeModal() {
+            document.getElementById("entryModal").classList.remove("open");
+            editingImage = "";
+            modalDefaults = {};
+        }
+
+        function handleModalBackdrop(event) {
+            if (event.target.id === "entryModal") closeModal();
+        }
+
+        function openSettings(section = "") {
+            document.getElementById("settingsDrawer").classList.add("open");
+            if (section === "data") document.getElementById("dataSection").scrollIntoView({ block: "start" });
+        }
+
+        function closeSettings() {
+            document.getElementById("settingsDrawer").classList.remove("open");
+        }
+
+        function handleDrawerBackdrop(event) {
+            if (event.target.id === "settingsDrawer") closeSettings();
+        }
+
+        async function setHomeCover(input) {
+            const file = input.files[0];
+            if (!file) return;
+            archive.settings.homeCoverImage = await compressImage(file, 1400, 0.82);
+            archive.settings.homeCoverMode = "custom";
+            saveArchive();
+            renderCurrentView();
+        }
+
+        function clearHomeCover() {
+            archive.settings.homeCoverImage = "";
+            archive.settings.homeCoverMode = "auto";
+            saveArchive();
+            renderCurrentView();
+        }
+
+        function compressImage(file, maxSize = 1200, quality = 0.82) {
+            return new Promise(resolve => {
+                const reader = new FileReader();
+                reader.onload = event => {
+                    const image = new Image();
+                    image.onload = () => {
+                        const scale = Math.min(1, maxSize / Math.max(image.width, image.height));
+                        const canvas = document.createElement("canvas");
+                        canvas.width = Math.max(1, Math.round(image.width * scale));
+                        canvas.height = Math.max(1, Math.round(image.height * scale));
+                        const ctx = canvas.getContext("2d");
+                        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+                        resolve(canvas.toDataURL("image/jpeg", quality));
+                    };
+                    image.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
         }
 
         function exportData(type) {
             if (type === "csv") {
-                const rows = [["Series", "Name", "Status", "Rating", "Favorite", "Price", "Purchase Date", "Store", "Tags", "Collection", "Review"]];
-                allVolumes().forEach(v => rows.push([v.seriesTitle, v.name, statusLabels[v.status], v.rating, v.favorite, v.price, v.purchaseDate, v.store, v.tags.join("|"), v.collection, v.review]));
-                download(`book-archive-${todayISO()}.csv`, rows.map(row => row.map(cell => `"${String(cell ?? "").replaceAll('"', '""')}"`).join(",")).join("\n"), "text/csv");
+                const rows = [["Title", "Author", "Publisher", "Collection", "Type", "Status", "Rating", "Price", "Purchase Date", "Store", "Tags", "Review"]];
+                archive.books.forEach(book => rows.push([book.title, book.author, book.publisher, collectionName(book.collectionId), typeText.en[book.type], statusText.en[book.status], book.rating, book.price, book.purchaseDate, book.store, book.tags.join("|"), book.review]));
+                download(`archive-${todayISO()}.csv`, rows.map(row => row.map(cell => `"${String(cell ?? "").replaceAll('"', '""')}"`).join(",")).join("\n"), "text/csv");
             } else {
-                download(`book-archive-${todayISO()}.json`, JSON.stringify(libraryData, null, 2), "application/json");
+                download(`archive-${todayISO()}.json`, JSON.stringify(archive, null, 2), "application/json");
             }
         }
 
         function download(filename, content, type) {
             const blob = new Blob([content], { type });
             const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
             URL.revokeObjectURL(url);
         }
 
@@ -1506,13 +2200,14 @@
             const reader = new FileReader();
             reader.onload = event => {
                 try {
-                    const imported = normalizeLibrary(JSON.parse(event.target.result));
-                    if (!confirm("นำเข้าข้อมูลใหม่และแทนที่ข้อมูลเดิมใช่ไหมครับ?")) return;
-                    libraryData = imported;
-                    saveLibrary();
+                    const imported = normalizeArchive(JSON.parse(event.target.result));
+                    if (!confirm(t("importConfirm"))) return;
+                    archive = imported;
+                    saveArchive();
+                    closeSettings();
                     setView("home");
                 } catch (error) {
-                    alert("ไฟล์นำเข้าไม่ถูกต้องครับ");
+                    alert(t("invalidImport"));
                 } finally {
                     input.value = "";
                 }
@@ -1520,27 +2215,27 @@
             reader.readAsText(file);
         }
 
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark");
-            const dark = document.body.classList.contains("dark");
-            localStorage.setItem("bookArchiveTheme", dark ? "dark" : "light");
-            document.getElementById("themeButton").innerText = dark ? "Light Mode" : "Dark Mode";
+        function resetData() {
+            if (!confirm(t("confirmReset"))) return;
+            archive = normalizeArchive({ books: [], collections: [], settings: {} });
+            saveArchive();
+            closeSettings();
+            setView("home");
         }
 
-        function applySavedTheme() {
-            if (localStorage.getItem("bookArchiveTheme") === "dark") {
-                document.body.classList.add("dark");
-                document.getElementById("themeButton").innerText = "Light Mode";
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                closeModal();
+                closeSettings();
             }
-        }
+        });
 
-        document.addEventListener("keydown", event => { if (event.key === "Escape") closeModal(); });
-        document.getElementById("todayLabel").innerText = new Date().toLocaleDateString("th-TH", { year: "numeric", month: "long", day: "numeric" });
         if ("serviceWorker" in navigator && location.protocol !== "file:") {
             navigator.serviceWorker.register("sw.js").catch(console.warn);
         }
-        applySavedTheme();
-        renderCurrentView();
+
+        applyTheme();
+        setLanguage(currentLang);
     </script>
 </body>
 </html>
